@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-bg: #0a0a0f;
+  --color-dark-surface: #1a1a2e;
+  --color-dark-accent: #16213e;
+  --color-gradient-start: #0f3460;
+  --color-gradient-mid: #164b60;
+  --color-gradient-end: #1e6ba8;
+  --color-accent-green: #00d4aa;
+  --color-accent-blue: #00a8ff;
+  --color-fg: #ffffff;
+}
+
+ :root[data-theme='light'] {
+  --color-dark-bg: #f8fafc;
+  --color-dark-surface: #ffffff;
+  --color-dark-accent: #e2e8f0;
+  --color-gradient-start: #e0f2fe;
+  --color-gradient-mid: #dcfce7;
+  --color-gradient-end: #dbeafe;
+  --color-fg: #0b1220;
+ }
+
+@layer base {
+  :root {
+    --scroll-behavior: smooth;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-bg text-fg overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-gradient-start via-gradient-mid to-gradient-end;
+  }
+  
+  .glass-effect {
+    @apply bg-dark-surface/80 backdrop-blur-md border border-fg/10;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
