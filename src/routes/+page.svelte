@@ -262,7 +262,7 @@
 				<p class="text-fg/40">I'm currently working on showcasing my technical skills!</p>
 			</div>
 		{:else}
-			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+			<!-- <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 				<div class="glass-effect p-6 rounded-xl text-center hover-lift">
 					<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full flex items-center justify-center">
 						<span class="text-2xl font-bold">95%</span>
@@ -294,7 +294,7 @@
 					<h3 class="text-xl font-semibold mb-2">DevOps</h3>
 					<p class="text-fg/70 text-sm">Docker, CI/CD, AWS</p>
 				</div>
-			</div>
+			</div> -->
 		{/if}
 	</div>
 </section>
@@ -313,7 +313,7 @@
 				<p class="text-fg/40">I'm working on sharing my thoughts and experiences!</p>
 			</div>
 		{:else}
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<!-- <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 				<div class="glass-effect rounded-xl overflow-hidden hover-lift">
 					<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
 					<div class="p-6">
@@ -343,7 +343,7 @@
 						<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		{/if}
 	</div>
 </section>
@@ -360,13 +360,13 @@
 		</p>
 		
 		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-			<a href="mailto:hello@example.com" class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift inline-block">
+			<a href="mailto:sakhawathossain3141@gmail.com" class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift inline-block">
 				Email Me
 			</a>
-			<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
+			<a href="https://github.com/sakhawat-hossain24" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
 				GitHub
 			</a>
-			<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
+			<a href="https://www.linkedin.com/in/sakhawat-hossain09/" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
 				LinkedIn
 			</a>
 		</div>
