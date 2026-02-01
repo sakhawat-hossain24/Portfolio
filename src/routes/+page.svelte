@@ -255,7 +255,7 @@
 			<span class="gradient-text">Skills</span>
 		</h2>
 		
-		{#if false}
+		{#if true}
 			<!-- Skills would be dynamically loaded here -->
 			<div class="text-center py-16">
 				<p class="text-xl text-fg/60 mb-4">Skills coming soon</p>
@@ -306,7 +306,7 @@
 			<span class="gradient-text">Blog</span>
 		</h2>
 		
-		{#if false}
+		{#if true}
 			<!-- Blog posts would be dynamically loaded here -->
 			<div class="text-center py-16">
 				<p class="text-xl text-fg/60 mb-4">Blog coming soon</p>
