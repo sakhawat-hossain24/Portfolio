@@ -11,56 +11,14 @@
 	let selectedCategory = $state('all');
 	const categories = ['all', 'web', 'mobile', 'design', 'opensource'];
 	
-	const projects = [
-		{
-			id: 1,
-			title: 'E-Commerce Platform',
-			category: 'web',
-			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-			tech: ['React', 'Node.js', 'MongoDB'],
-			image: 'project1'
-		},
-		{
-			id: 2,
-			title: 'Mobile Banking App',
-			category: 'mobile',
-			description: 'Sed do eiusmod tempor incididunt ut labore et dolore.',
-			tech: ['React Native', 'TypeScript'],
-			image: 'project2'
-		},
-		{
-			id: 3,
-			title: 'Design System',
-			category: 'design',
-			description: 'Ut enim ad minim veniam, quis nostrud exercitation.',
-			tech: ['Figma', 'TailwindCSS'],
-			image: 'project3'
-		},
-		{
-			id: 4,
-			title: 'Open Source CLI Tool',
-			category: 'opensource',
-			description: 'Duis aute irure dolor in reprehenderit in voluptate.',
-			tech: ['Go', 'Docker'],
-			image: 'project4'
-		},
-		{
-			id: 5,
-			title: 'Real-time Chat App',
-			category: 'web',
-			description: 'Excepteur sint occaecat cupidatat non proident.',
-			tech: ['Socket.io', 'Express'],
-			image: 'project5'
-		},
-		{
-			id: 6,
-			title: 'iOS Fitness Tracker',
-			category: 'mobile',
-			description: 'Sunt in culpa qui officia deserunt mollit anim id.',
-			tech: ['Swift', 'CoreData'],
-			image: 'project6'
-		}
-	];
+	interface Project {
+		title: string;
+		description: string;
+		category: string;
+		tech: string[];
+	}
+	
+	const projects: Project[] = [];
 	
 	const filteredProjects = $derived(selectedCategory === 'all' 
 		? projects 
@@ -112,7 +70,7 @@
 	<div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
 		<div class="mb-8">
 			<h1 class="text-5xl md:text-7xl font-bold mb-6">
-				<span class="gradient-text">Hello, I'm</span>
+				<span class="gradient-text">Hello, I'm a</span>
 				<br />
 				<span class="inline-flex items-baseline justify-center whitespace-nowrap">
 					<span class="text-fg">{currentText}</span>
@@ -121,7 +79,7 @@
 			</h1>
 			
 			<p class="text-xl md:text-2xl text-fg/80 mb-8 max-w-3xl mx-auto">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				I build break and rebuild. All from 
 			</p>
 		</div>
 
@@ -251,119 +209,142 @@
 		</div>
 		
 		<!-- Projects Grid -->
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{#each filteredProjects as project}
-				<div class="glass-effect rounded-xl overflow-hidden hover-lift group">
-					<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface relative">
-						<div class="absolute inset-0 flex items-center justify-center">
-							<div class="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
+		{#if filteredProjects.length === 0}
+			<div class="text-center py-16">
+				<p class="text-xl text-fg/60 mb-4">No projects found</p>
+				<p class="text-fg/40">Check back later for new projects!</p>
+			</div>
+		{:else}
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{#each filteredProjects as project}
+					<div class="glass-effect rounded-xl overflow-hidden hover-lift group">
+						<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface relative">
+							<div class="absolute inset-0 flex items-center justify-center">
+								<div class="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
+							</div>
+							<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+								<button class="p-2 glass-effect rounded-lg hover-lift">
+									<ExternalLink class="w-5 h-5" />
+								</button>
+								<button class="p-2 glass-effect rounded-lg hover-lift">
+									<Github class="w-5 h-5" />
+								</button>
+							</div>
 						</div>
-						<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-							<button class="p-2 glass-effect rounded-lg hover-lift">
-								<ExternalLink class="w-5 h-5" />
-							</button>
-							<button class="p-2 glass-effect rounded-lg hover-lift">
-								<Github class="w-5 h-5" />
-							</button>
+						
+						<div class="p-6">
+							<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+							<p class="text-fg/70 mb-4">{project.description}</p>
+							<div class="flex flex-wrap gap-2">
+								{#each project.tech as tech}
+									<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">{tech}</span>
+								{/each}
+							</div>
 						</div>
 					</div>
-					
-					<div class="p-6">
-						<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-						<p class="text-fg/70 mb-4">{project.description}</p>
-						<div class="flex flex-wrap gap-2">
-							{#each project.tech as tech}
-								<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">{tech}</span>
-							{/each}
-						</div>
-					</div>
-				</div>
-			{/each}
-		</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </section>
 
-<!-- Skills Section -->
+		<!-- Skills Section -->
 <section id="skills" class="py-20 px-6">
 	<div class="max-w-6xl mx-auto">
 		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
 			<span class="gradient-text">Skills</span>
 		</h2>
 		
-		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-			<div class="glass-effect p-6 rounded-xl text-center hover-lift">
-				<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full flex items-center justify-center">
-					<span class="text-2xl font-bold">95%</span>
-				</div>
-				<h3 class="text-xl font-semibold mb-2">Frontend</h3>
-				<p class="text-fg/70 text-sm">React, Vue, Svelte, TypeScript</p>
+		{#if false}
+			<!-- Skills would be dynamically loaded here -->
+			<div class="text-center py-16">
+				<p class="text-xl text-fg/60 mb-4">Skills coming soon</p>
+				<p class="text-fg/40">I'm currently working on showcasing my technical skills!</p>
 			</div>
-			
-			<div class="glass-effect p-6 rounded-xl text-center hover-lift">
-				<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-blue to-accent-green rounded-full flex items-center justify-center">
-					<span class="text-2xl font-bold">85%</span>
+		{:else}
+			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<div class="glass-effect p-6 rounded-xl text-center hover-lift">
+					<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full flex items-center justify-center">
+						<span class="text-2xl font-bold">95%</span>
+					</div>
+					<h3 class="text-xl font-semibold mb-2">Frontend</h3>
+					<p class="text-fg/70 text-sm">React, Vue, Svelte, TypeScript</p>
 				</div>
-				<h3 class="text-xl font-semibold mb-2">Backend</h3>
-				<p class="text-fg/70 text-sm">Node.js, Python, PostgreSQL</p>
-			</div>
-			
-			<div class="glass-effect p-6 rounded-xl text-center hover-lift">
-				<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full flex items-center justify-center">
-					<span class="text-2xl font-bold">90%</span>
+				
+				<div class="glass-effect p-6 rounded-xl text-center hover-lift">
+					<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-blue to-accent-green rounded-full flex items-center justify-center">
+						<span class="text-2xl font-bold">85%</span>
+					</div>
+					<h3 class="text-xl font-semibold mb-2">Backend</h3>
+					<p class="text-fg/70 text-sm">Node.js, Python, PostgreSQL</p>
 				</div>
-				<h3 class="text-xl font-semibold mb-2">Design</h3>
-				<p class="text-fg/70 text-sm">Figma, Adobe XD, TailwindCSS</p>
-			</div>
-			
-			<div class="glass-effect p-6 rounded-xl text-center hover-lift">
-				<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-blue to-accent-green rounded-full flex items-center justify-center">
-					<span class="text-2xl font-bold">80%</span>
+				
+				<div class="glass-effect p-6 rounded-xl text-center hover-lift">
+					<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full flex items-center justify-center">
+						<span class="text-2xl font-bold">90%</span>
+					</div>
+					<h3 class="text-xl font-semibold mb-2">Design</h3>
+					<p class="text-fg/70 text-sm">Figma, Adobe XD, TailwindCSS</p>
 				</div>
-				<h3 class="text-xl font-semibold mb-2">DevOps</h3>
-				<p class="text-fg/70 text-sm">Docker, CI/CD, AWS</p>
+				
+				<div class="glass-effect p-6 rounded-xl text-center hover-lift">
+					<div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-accent-blue to-accent-green rounded-full flex items-center justify-center">
+						<span class="text-2xl font-bold">80%</span>
+					</div>
+					<h3 class="text-xl font-semibold mb-2">DevOps</h3>
+					<p class="text-fg/70 text-sm">Docker, CI/CD, AWS</p>
+				</div>
 			</div>
-		</div>
+		{/if}
 	</div>
 </section>
 
-<!-- Blog Section -->
+		<!-- Blog Section -->
 <section id="blog" class="py-20 px-6">
 	<div class="max-w-6xl mx-auto">
 		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
 			<span class="gradient-text">Blog</span>
 		</h2>
 		
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-			<div class="glass-effect rounded-xl overflow-hidden hover-lift">
-				<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
-				<div class="p-6">
-					<div class="text-sm text-accent-green mb-2">Nov 15, 2024</div>
-					<h3 class="text-xl font-semibold mb-2">Building Modern Web Apps with Svelte</h3>
-					<p class="text-fg/70 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
-					<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
+		{#if false}
+			<!-- Blog posts would be dynamically loaded here -->
+			<div class="text-center py-16">
+				<p class="text-xl text-fg/60 mb-4">Blog coming soon</p>
+				<p class="text-fg/40">I'm working on sharing my thoughts and experiences!</p>
+			</div>
+		{:else}
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div class="glass-effect rounded-xl overflow-hidden hover-lift">
+					<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
+					<div class="p-6">
+						<div class="text-sm text-accent-green mb-2">Nov 15, 2024</div>
+						<h3 class="text-xl font-semibold mb-2">Building Modern Web Apps with Svelte</h3>
+						<p class="text-fg/70 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+						<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
+					</div>
+				</div>
+				
+				<div class="glass-effect rounded-xl overflow-hidden hover-lift">
+					<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
+					<div class="p-6">
+						<div class="text-sm text-accent-green mb-2">Nov 10, 2024</div>
+						<h3 class="text-xl font-semibold mb-2">TypeScript Best Practices</h3>
+						<p class="text-fg/70 mb-4">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
+					</div>
+				</div>
+				
+				<div class="glass-effect rounded-xl overflow-hidden hover-lift">
+					<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
+					<div class="p-6">
+						<div class="text-sm text-accent-green mb-2">Nov 5, 2024</div>
+						<h3 class="text-xl font-semibold mb-2">CSS Grid vs Flexbox</h3>
+						<p class="text-fg/70 mb-4">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+						<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
+					</div>
 				</div>
 			</div>
-			
-			<div class="glass-effect rounded-xl overflow-hidden hover-lift">
-				<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
-				<div class="p-6">
-					<div class="text-sm text-accent-green mb-2">Nov 10, 2024</div>
-					<h3 class="text-xl font-semibold mb-2">TypeScript Best Practices</h3>
-					<p class="text-fg/70 mb-4">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
-				</div>
-			</div>
-			
-			<div class="glass-effect rounded-xl overflow-hidden hover-lift">
-				<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface"></div>
-				<div class="p-6">
-					<div class="text-sm text-accent-green mb-2">Nov 5, 2024</div>
-					<h3 class="text-xl font-semibold mb-2">CSS Grid vs Flexbox</h3>
-					<p class="text-fg/70 mb-4">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-					<button class="text-accent-blue hover:text-accent-green transition-colors">Read More →</button>
-				</div>
-			</div>
-		</div>
+		{/if}
 	</div>
 </section>
 
