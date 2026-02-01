@@ -102,8 +102,12 @@
 
 <!-- SEO Meta Tags -->
 <svelte:head>
-	<title>Portfolio - Creative Developer</title>
+	<title>Sakhawat Hossain</title>
 	<meta name="description" content="Creative developer portfolio with modern design" />
+	<!-- Favicon using letter S icon -->
+	<link rel="icon" type="image/png" href="/Portfolio/projects/favicon.png" />
+	<link rel="apple-touch-icon" href="/Portfolio/projects/favicon.png" />
+	<!-- Image attribution: Letter S icon from Flaticon - https://www.flaticon.com/free-icon/letter-s_3665980 -->
 </svelte:head>
 
 <!-- Main Application Container -->
@@ -118,9 +122,6 @@
 			<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
 				<!-- Logo/Brand Section -->
 				<a href="#hero" class="flex items-center gap-3" onclick={(e) => (e.preventDefault(), navigateToSection('hero'))} aria-label="Go to top">
-					<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-green/20 to-accent-blue/20 border border-fg/10 flex items-center justify-center">
-						<span class="font-bold gradient-text">S</span>
-					</div>
 					<div class="leading-tight">
 						<div class="text-sm text-fg/70">Portfolio</div>
 						<div class="text-base font-semibold">Sakhawat Hossain</div>

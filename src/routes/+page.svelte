@@ -61,6 +61,7 @@
 		description: string;
 		category: string;
 		tech: string[];
+		image?: string;
 		liveUrl?: string;
 		sourceUrl?: string;
 	}
@@ -74,23 +75,10 @@
 			description: 'A fast, animated, and responsive portfolio built with SvelteKit + Tailwind.',
 			category: 'web',
 			tech: ['SvelteKit', 'TypeScript', 'TailwindCSS'],
-			liveUrl: '#hero',
-			sourceUrl: 'https://github.com/sakhawat-hossain24'
+			image: '/Portfolio/projects/portfolio-screenshot.png',
+			liveUrl: 'https://sakhawat-hossain24.github.io/Portfolio/',
+			sourceUrl: 'https://github.com/sakhawat-hossain24/Portfolio'
 		},
-		{
-			title: 'UI Components Playground',
-			description: 'Reusable components, clean states, and pixel-perfect UI patterns for rapid builds.',
-			category: 'design',
-			tech: ['UI/UX', 'Design Systems', 'Accessibility'],
-			sourceUrl: 'https://github.com/sakhawat-hossain24'
-		},
-		{
-			title: 'Open Source Contributions',
-			description: 'Small improvements, bug fixes, and docs contributions across the ecosystem.',
-			category: 'opensource',
-			tech: ['Git', 'Pull Requests', 'Collaboration'],
-			sourceUrl: 'https://github.com/sakhawat-hossain24'
-		}
 	];
 	
 	/**
@@ -171,32 +159,42 @@
 </script>
 
 <!-- Hero Section -->
-<section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+<section id="hero" class="min-h-screen flex items-start justify-center relative overflow-hidden pt-8">
 	<!-- Animated gradient background -->
 	<div class="absolute inset-0 gradient-bg animate-gradient opacity-30"></div>
 	
 	<!-- Hero content container -->
-	<div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+	<div class="relative z-10 text-center px-6 max-w-6xl mx-auto mt-8">
 		<!-- Main heading with typewriter effect -->
-		<div class="mb-8">
-			<h1 class="text-5xl md:text-7xl font-bold mb-6">
-				<span class="gradient-text">Hi, I'm Sakhawat.</span>
-				<br />
-				<!-- Typewriter animation container -->
-				<span class="inline-flex items-baseline justify-center whitespace-nowrap">
-					<span class="text-fg">{currentText}</span>
-					<span class="animate-pulse">|</span>
-				</span>
-			</h1>
+		<div>
+			<!-- Profile picture and name container -->
+			<div class="flex flex-col items-center">
+				<div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 ring-4 ring-fg/10 glass-effect">
+					<img 
+						src="/Portfolio/projects/profile-picture.png" 
+						alt="Sakhawat Hossain" 
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<h1 class="text-4xl md:text-6xl font-bold text-center mb-3">
+					<span class="gradient-text">Hi, I'm Sakhawat.</span>
+					<br />
+					<!-- Typewriter animation container -->
+					<span class="inline-flex items-baseline justify-center whitespace-nowrap">
+						<span class="text-fg">{currentText}</span>
+						<span class="animate-pulse">|</span>
+					</span>
+				</h1>
+			</div>
 			
 			<!-- Hero description -->
-			<p class="text-xl md:text-2xl text-fg/80 mb-8 max-w-3xl mx-auto">
+			<p class="text-lg md:text-xl text-fg/80 mb-2 max-w-2xl mx-auto">
 				I build clean, modern web experiences with strong UX, crisp UI, and attention to performance.
 			</p>
 		</div>
 
 		<!-- Call-to-action buttons -->
-		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
 			<button onclick={() => smoothScrollTo('projects')} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
 				View Projects
 			</button>
@@ -206,7 +204,7 @@
 		</div>
 
 		<!-- Feature highlights grid -->
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
 			<!-- Clean Code feature -->
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Code class="w-12 h-12 text-accent-green mx-auto mb-4" />
@@ -231,15 +229,15 @@
 	</div>
 
 	<!-- Scroll indicator -->
-	<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+	<div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 animate-bounce">
 		<ChevronDown class="w-8 h-8 text-accent-green" />
 	</div>
 </section>
 
 <!-- About Section -->
-<section id="about" class="py-20 px-6">
+<section id="about" class="py-24 px-6">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
 			<span class="gradient-text">About Me</span>
 		</h2>
 		
@@ -249,15 +247,18 @@
 					I enjoy building products end-to-end: from clean component architecture to delightful UI details.
 				</p>
 				<p class="text-lg text-fg/80">
-					My current focus is modern frontend development with TypeScript, design systems, and performance.
+					My current focus is modern frontend development, design systems, and performance.
 				</p>
-				<div class="flex flex-wrap gap-4">
+				<div class="flex flex-wrap gap-3">
+					<span class="px-4 py-2 glass-effect rounded-full text-sm">HTML</span>
+					<span class="px-4 py-2 glass-effect rounded-full text-sm">CSS</span>
 					<span class="px-4 py-2 glass-effect rounded-full text-sm">JavaScript</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">TypeScript</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">React</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">Svelte</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">Node.js</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">TailwindCSS</span>
+					<span class="px-4 py-2 glass-effect rounded-full text sm">Python</span>
+					<span class="px-4 py-2 glass-effect rounded-full text sm">SQL</span>
+					<span class="px-4 py-2 glass-effect rounded-full text sm">Git</span>
+					<span class="px-4 py-2 glass-effect rounded-full text sm">Docker</span>
+					<span class="px-4 py-2 glass-effect rounded-full text sm">Supabase</span>
+					<span class="px-4 py-2 glass-effect rounded-full text sm">Linux</span>
 				</div>
 			</div>
 			
@@ -267,30 +268,30 @@
 						<div>
 							<div class="flex justify-between mb-2">
 								<span class="text-fg/80">Frontend Development</span>
-								<span class="text-accent-green">90%</span>
+								<span class="text-accent-green">30%</span>
 							</div>
 							<div class="w-full bg-gray-700 rounded-full h-3">
-								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-3 rounded-full" style="width: 90%"></div>
+								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-3 rounded-full" style="width: 30%"></div>
 							</div>
 						</div>
 						
 						<div>
 							<div class="flex justify-between mb-2">
 								<span class="text-fg/80">UI/UX Design</span>
-								<span class="text-accent-blue">85%</span>
+								<span class="text-accent-blue">10%</span>
 							</div>
 							<div class="w-full bg-gray-700 rounded-full h-3">
-								<div class="bg-gradient-to-r from-accent-blue to-accent-green h-3 rounded-full" style="width: 85%"></div>
+								<div class="bg-gradient-to-r from-accent-blue to-accent-green h-3 rounded-full" style="width: 10%"></div>
 							</div>
 						</div>
 						
 						<div>
 							<div class="flex justify-between mb-2">
 								<span class="text-fg/80">Backend Development</span>
-								<span class="text-accent-green">75%</span>
+								<span class="text-accent-green">50%</span>
 							</div>
 							<div class="w-full bg-gray-700 rounded-full h-3">
-								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-3 rounded-full" style="width: 75%"></div>
+								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-3 rounded-full" style="width: 50%"></div>
 							</div>
 						</div>
 					</div>
@@ -301,9 +302,9 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="py-20 px-6">
+<section id="projects" class="py-24 px-6">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
 			<span class="gradient-text">Projects</span>
 		</h2>
 		
@@ -337,10 +338,18 @@
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{#each filteredProjects as project}
 					<div class="glass-effect rounded-xl overflow-hidden hover-lift group">
-						<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface relative">
-							<div class="absolute inset-0 flex items-center justify-center">
-								<div class="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
-							</div>
+						<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface relative overflow-hidden">
+							{#if project.image}
+								<img 
+									src={project.image} 
+									alt={project.title}
+									class="w-full h-full object-cover"
+								/>
+							{:else}
+								<div class="absolute inset-0 flex items-center justify-center">
+									<div class="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
+								</div>
+							{/if}
 							<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
 								{#if project.liveUrl}
 									<a href={project.liveUrl} class="p-2 glass-effect rounded-lg hover-lift" target={project.liveUrl.startsWith('#') ? undefined : '_blank'} rel={project.liveUrl.startsWith('#') ? undefined : 'noopener noreferrer'} aria-label="Open live project">
@@ -380,9 +389,9 @@
 </section>
 
 		<!-- Skills Section -->
-<section id="skills" class="py-20 px-6">
+<section id="skills" class="py-24 px-6">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
 			<span class="gradient-text">Skills</span>
 		</h2>
 		
@@ -467,9 +476,9 @@
 </section>
 
 		<!-- Blog Section -->
-<section id="blog" class="py-20 px-6">
+<section id="blog" class="py-24 px-6">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
 			<span class="gradient-text">Blog</span>
 		</h2>
 		
@@ -516,9 +525,9 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-20 px-6">
+<section id="contact" class="py-24 px-6">
 	<div class="max-w-4xl mx-auto text-center">
-		<h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
 			<span class="gradient-text">Get In Touch</span>
 		</h2>
 		
