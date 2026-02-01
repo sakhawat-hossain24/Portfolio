@@ -1,11 +1,30 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github } from 'lucide-svelte';
+	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github, Copy, Mail, X } from 'lucide-svelte';
 
 	let currentText = $state('');
 	let fullText = 'Developer & Learner';
 	let charIndex = $state(0);
 	let isDeleting = $state(false);
+	let showEmailPopup = $state(false);
+	let copySuccess = $state(false);
+	const email = 'sakhawathossain3141@gmail.com';
+	
+	async function copyEmail() {
+		try {
+			await navigator.clipboard.writeText(email);
+			copySuccess = true;
+			setTimeout(() => {
+				copySuccess = false;
+			}, 2000);
+		} catch (err) {
+			console.error('Failed to copy email:', err);
+		}
+	}
+	
+	function openEmailClient() {
+		window.location.href = `mailto:${email}`;
+	}
 	
 	// Projects filtering
 	let selectedCategory = $state('all');
@@ -360,9 +379,9 @@
 		</p>
 		
 		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-			<a href="mailto:sakhawathossain3141@gmail.com" class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift inline-block">
+			<button onclick={() => showEmailPopup = true} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
 				Email Me
-			</a>
+			</button>
 			<a href="https://github.com/sakhawat-hossain24" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
 				GitHub
 			</a>
@@ -379,3 +398,65 @@
 		</div>
 	</div>
 </section>
+
+<!-- Email Popup Modal -->
+{#if showEmailPopup}
+	<div 
+		class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6" 
+		role="dialog" 
+		aria-modal="true"
+		aria-labelledby="email-modal-title"
+		tabindex="0"
+		onclick={() => showEmailPopup = false}
+		onkeydown={(e) => e.key === 'Escape' && (showEmailPopup = false)}
+	>
+		<div class="glass-effect rounded-2xl p-8 max-w-md w-full relative">
+			<button 
+				onclick={() => showEmailPopup = false}
+				class="absolute top-4 right-4 p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg"
+				aria-label="Close email modal"
+			>
+				<X class="w-5 h-5" />
+			</button>
+			
+			<div class="text-center mb-6">
+				<h3 id="email-modal-title" class="text-2xl font-bold mb-2 gradient-text">Get In Touch</h3>
+				<p class="text-fg/70">Feel free to reach out via email</p>
+			</div>
+			
+			<div class="glass-effect rounded-lg p-4 mb-6">
+				<div class="flex items-center justify-between">
+					<span class="text-lg font-mono text-fg">{email}</span>
+					<button
+						onclick={copyEmail}
+						class="p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg transition-colors"
+						title="Copy email"
+					>
+						{#if copySuccess}
+							<span class="text-accent-green text-sm">Copied!</span>
+						{:else}
+							<Copy class="w-5 h-5" />
+						{/if}
+					</button>
+				</div>
+			</div>
+			
+			<div class="flex gap-4">
+				<button
+					onclick={copyEmail}
+					class="flex-1 px-6 py-3 glass-effect rounded-lg font-semibold hover-lift border border-fg/20 flex items-center justify-center gap-2"
+				>
+					<Copy class="w-5 h-5" />
+					{copySuccess ? 'Copied!' : 'Copy Email'}
+				</button>
+				<button
+					onclick={openEmailClient}
+					class="flex-1 px-6 py-3 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg font-semibold hover-lift text-white flex items-center justify-center gap-2"
+				>
+					<Mail class="w-5 h-5" />
+					Send Email
+				</button>
+			</div>
+		</div>
+	</div>
+{/if}
