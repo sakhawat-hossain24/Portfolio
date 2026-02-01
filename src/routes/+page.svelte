@@ -3,7 +3,7 @@
 	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github } from 'lucide-svelte';
 
 	let currentText = $state('');
-	let fullText = 'Creative Developer & Designer';
+	let fullText = 'Developer & Learner';
 	let charIndex = $state(0);
 	let isDeleting = $state(false);
 	
