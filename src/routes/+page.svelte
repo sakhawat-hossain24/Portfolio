@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github, Copy, Mail, X } from 'lucide-svelte';
+	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github, Copy, Mail, X, ArrowUpRight } from 'lucide-svelte';
 
 	let currentText = $state('');
 	let fullText = 'Developer & Learner';
@@ -9,6 +9,14 @@
 	let showEmailPopup = $state(false);
 	let copySuccess = $state(false);
 	const email = 'sakhawathossain3141@gmail.com';
+	let modalPanel: HTMLDivElement | null = $state(null);
+	
+	function smoothScrollTo(elementId: string) {
+		const element = document.getElementById(elementId);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth' });
+		}
+	}
 	
 	async function copyEmail() {
 		try {
@@ -35,9 +43,34 @@
 		description: string;
 		category: string;
 		tech: string[];
+		liveUrl?: string;
+		sourceUrl?: string;
 	}
 	
-	const projects: Project[] = [];
+	const projects: Project[] = [
+		{
+			title: 'Portfolio Website',
+			description: 'A fast, animated, and responsive portfolio built with SvelteKit + Tailwind.',
+			category: 'web',
+			tech: ['SvelteKit', 'TypeScript', 'TailwindCSS'],
+			liveUrl: '#hero',
+			sourceUrl: 'https://github.com/sakhawat-hossain24'
+		},
+		{
+			title: 'UI Components Playground',
+			description: 'Reusable components, clean states, and pixel-perfect UI patterns for rapid builds.',
+			category: 'design',
+			tech: ['UI/UX', 'Design Systems', 'Accessibility'],
+			sourceUrl: 'https://github.com/sakhawat-hossain24'
+		},
+		{
+			title: 'Open Source Contributions',
+			description: 'Small improvements, bug fixes, and docs contributions across the ecosystem.',
+			category: 'opensource',
+			tech: ['Git', 'Pull Requests', 'Collaboration'],
+			sourceUrl: 'https://github.com/sakhawat-hossain24'
+		}
+	];
 	
 	const filteredProjects = $derived(selectedCategory === 'all' 
 		? projects 
@@ -75,9 +108,16 @@
 		};
 		typeWriter();
 
+		const onKeyDown = (e: KeyboardEvent) => {
+			if (e.key !== 'Escape') return;
+			showEmailPopup = false;
+		};
+		window.addEventListener('keydown', onKeyDown);
+
 		return () => {
 			cancelled = true;
 			if (timeoutId !== null) clearTimeout(timeoutId);
+			window.removeEventListener('keydown', onKeyDown);
 		};
 	});
 </script>
@@ -89,7 +129,7 @@
 	<div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
 		<div class="mb-8">
 			<h1 class="text-5xl md:text-7xl font-bold mb-6">
-				<span class="gradient-text">Hello, I'm a</span>
+				<span class="gradient-text">Hi, I'm Sakhawat.</span>
 				<br />
 				<span class="inline-flex items-baseline justify-center whitespace-nowrap">
 					<span class="text-fg">{currentText}</span>
@@ -98,16 +138,16 @@
 			</h1>
 			
 			<p class="text-xl md:text-2xl text-fg/80 mb-8 max-w-3xl mx-auto">
-				I build break and rebuild. All from 
+				I build clean, modern web experiences with strong UX, crisp UI, and attention to performance.
 			</p>
 		</div>
 
 		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-			<button class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
-				View My Work
+			<button onclick={() => smoothScrollTo('projects')} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
+				View Projects
 			</button>
-			<button class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20">
-				Contact Me
+			<button onclick={() => smoothScrollTo('contact')} class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20">
+				Let’s Talk
 			</button>
 		</div>
 
@@ -115,19 +155,19 @@
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Code class="w-12 h-12 text-accent-green mx-auto mb-4" />
 				<h3 class="text-xl font-semibold mb-2">Clean Code</h3>
-				<p class="text-fg/70">Lorem ipsum dolor sit amet consectetur</p>
+				<p class="text-fg/70">Readable, maintainable, and built to scale.</p>
 			</div>
 			
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Palette class="w-12 h-12 text-accent-blue mx-auto mb-4" />
-				<h3 class="text-xl font-semibold mb-2">Creative Design</h3>
-				<p class="text-fg/70">Sed do eiusmod tempor incididunt</p>
+				<h3 class="text-xl font-semibold mb-2">Design Taste</h3>
+				<p class="text-fg/70">Modern UI with careful spacing and typography.</p>
 			</div>
 			
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Zap class="w-12 h-12 text-accent-green mx-auto mb-4" />
-				<h3 class="text-xl font-semibold mb-2">Fast Performance</h3>
-				<p class="text-fg/70">Ut labore et dolore magna aliqua</p>
+				<h3 class="text-xl font-semibold mb-2">Fast by Default</h3>
+				<p class="text-fg/70">Performance-first choices and smooth interactions.</p>
 			</div>
 		</div>
 	</div>
@@ -147,10 +187,10 @@
 		<div class="grid md:grid-cols-2 gap-12 items-center">
 			<div class="space-y-6">
 				<p class="text-lg text-fg/80">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+					I enjoy building products end-to-end: from clean component architecture to delightful UI details.
 				</p>
 				<p class="text-lg text-fg/80">
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+					My current focus is modern frontend development with TypeScript, design systems, and performance.
 				</p>
 				<div class="flex flex-wrap gap-4">
 					<span class="px-4 py-2 glass-effect rounded-full text-sm">JavaScript</span>
@@ -158,6 +198,7 @@
 					<span class="px-4 py-2 glass-effect rounded-full text-sm">React</span>
 					<span class="px-4 py-2 glass-effect rounded-full text-sm">Svelte</span>
 					<span class="px-4 py-2 glass-effect rounded-full text-sm">Node.js</span>
+					<span class="px-4 py-2 glass-effect rounded-full text-sm">TailwindCSS</span>
 				</div>
 			</div>
 			
@@ -242,12 +283,16 @@
 								<div class="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
 							</div>
 							<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-								<button class="p-2 glass-effect rounded-lg hover-lift">
-									<ExternalLink class="w-5 h-5" />
-								</button>
-								<button class="p-2 glass-effect rounded-lg hover-lift">
-									<Github class="w-5 h-5" />
-								</button>
+								{#if project.liveUrl}
+									<a href={project.liveUrl} class="p-2 glass-effect rounded-lg hover-lift" target={project.liveUrl.startsWith('#') ? undefined : '_blank'} rel={project.liveUrl.startsWith('#') ? undefined : 'noopener noreferrer'} aria-label="Open live project">
+										<ExternalLink class="w-5 h-5" />
+									</a>
+								{/if}
+								{#if project.sourceUrl}
+									<a href={project.sourceUrl} class="p-2 glass-effect rounded-lg hover-lift" target="_blank" rel="noopener noreferrer" aria-label="Open source code">
+										<Github class="w-5 h-5" />
+									</a>
+								{/if}
 							</div>
 						</div>
 						
@@ -259,6 +304,14 @@
 									<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">{tech}</span>
 								{/each}
 							</div>
+							{#if project.liveUrl && !project.liveUrl.startsWith('#')}
+								<div class="mt-5">
+									<a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-fg/80 hover:text-fg transition-colors">
+										<span class="gradient-text">View details</span>
+										<ArrowUpRight class="w-4 h-4" />
+									</a>
+								</div>
+							{/if}
 						</div>
 					</div>
 				{/each}
@@ -276,9 +329,45 @@
 		
 		{#if true}
 			<!-- Skills would be dynamically loaded here -->
-			<div class="text-center py-16">
-				<p class="text-xl text-fg/60 mb-4">Skills coming soon</p>
-				<p class="text-fg/40">I'm currently working on showcasing my technical skills!</p>
+			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div class="glass-effect p-6 rounded-xl hover-lift">
+					<div class="text-sm text-fg/60 mb-2">Frontend</div>
+					<div class="text-lg font-semibold mb-4">UI that feels premium</div>
+					<div class="flex flex-wrap gap-2">
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">SvelteKit</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">React</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">TypeScript</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">TailwindCSS</span>
+					</div>
+				</div>
+				<div class="glass-effect p-6 rounded-xl hover-lift">
+					<div class="text-sm text-fg/60 mb-2">Backend</div>
+					<div class="text-lg font-semibold mb-4">Pragmatic APIs</div>
+					<div class="flex flex-wrap gap-2">
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Node.js</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">REST</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Auth</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">SQL</span>
+					</div>
+				</div>
+				<div class="glass-effect p-6 rounded-xl hover-lift">
+					<div class="text-sm text-fg/60 mb-2">Design</div>
+					<div class="text-lg font-semibold mb-4">System thinking</div>
+					<div class="flex flex-wrap gap-2">
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Figma</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Design Systems</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Accessibility</span>
+					</div>
+				</div>
+				<div class="glass-effect p-6 rounded-xl hover-lift">
+					<div class="text-sm text-fg/60 mb-2">Workflow</div>
+					<div class="text-lg font-semibold mb-4">Ship reliably</div>
+					<div class="flex flex-wrap gap-2">
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Git</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Code Review</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">CI</span>
+					</div>
+				</div>
 			</div>
 		{:else}
 			<!-- <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -375,11 +464,11 @@
 		</h2>
 		
 		<p class="text-xl text-fg/80 mb-12">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Have an idea, a project, or a role? Send me a message and I’ll get back to you.
 		</p>
 		
 		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-			<button onclick={() => showEmailPopup = true} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
+			<button onclick={() => (showEmailPopup = true)} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
 				Email Me
 			</button>
 			<a href="https://github.com/sakhawat-hossain24" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
@@ -406,13 +495,13 @@
 		role="dialog" 
 		aria-modal="true"
 		aria-labelledby="email-modal-title"
-		tabindex="0"
-		onclick={() => showEmailPopup = false}
+		tabindex="-1"
+		onclick={(e) => e.currentTarget === e.target && (showEmailPopup = false)}
 		onkeydown={(e) => e.key === 'Escape' && (showEmailPopup = false)}
 	>
-		<div class="glass-effect rounded-2xl p-8 max-w-md w-full relative">
+		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-8 max-w-md w-full relative">
 			<button 
-				onclick={() => showEmailPopup = false}
+				onclick={() => (showEmailPopup = false)}
 				class="absolute top-4 right-4 p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg"
 				aria-label="Close email modal"
 			>

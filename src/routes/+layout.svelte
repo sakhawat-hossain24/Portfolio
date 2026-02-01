@@ -1,10 +1,12 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { Menu, X, Sun, Moon } from 'lucide-svelte';
 
 	let { children } = $props();
 	let theme = $state<'dark' | 'light'>('dark');
 	const isDarkMode = $derived(theme === 'dark');
+	let mobileNavOpen = $state(false);
 
 	// Smooth scroll function
 	function smoothScrollTo(elementId: string) {
@@ -12,6 +14,11 @@
 		if (element) {
 			element.scrollIntoView({ behavior: 'smooth' });
 		}
+	}
+
+	function navigateToSection(elementId: string) {
+		mobileNavOpen = false;
+		smoothScrollTo(elementId);
 	}
 
 	function applyTheme(nextTheme: 'dark' | 'light') {
@@ -50,8 +57,14 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 		updateScrollProgress();
 
+		const onKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') mobileNavOpen = false;
+		};
+		window.addEventListener('keydown', onKeyDown);
+
 		return () => {
 			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('keydown', onKeyDown);
 			if (rafId !== null) window.cancelAnimationFrame(rafId);
 		};
 	});
@@ -67,27 +80,72 @@
 	<div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent-green to-accent-blue z-50 transition-all duration-300" style="width: 0%"></div>
 	
 	<!-- Navigation -->
-	<nav class="fixed top-0 w-full glass-effect z-40 px-6 py-4">
-		<div class="max-w-7xl mx-auto flex justify-between items-center">
-			<div class="text-2xl font-bold gradient-text">Portfolio</div>
-			
-			<div class="hidden md:flex space-x-8">
-				<button onclick={() => smoothScrollTo('hero')} class="hover:text-accent-green transition-colors">Home</button>
-				<button onclick={() => smoothScrollTo('about')} class="hover:text-accent-green transition-colors">About</button>
-				<button onclick={() => smoothScrollTo('projects')} class="hover:text-accent-green transition-colors">Projects</button>
-				<button onclick={() => smoothScrollTo('skills')} class="hover:text-accent-green transition-colors">Skills</button>
-				<button onclick={() => smoothScrollTo('blog')} class="hover:text-accent-green transition-colors">Blog</button>
-				<button onclick={() => smoothScrollTo('contact')} class="hover:text-accent-green transition-colors">Contact</button>
+	<nav class="fixed top-0 w-full z-40">
+		<div class="px-4 sm:px-6 py-4">
+			<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
+				<a href="#hero" class="flex items-center gap-3" onclick={(e) => (e.preventDefault(), navigateToSection('hero'))} aria-label="Go to top">
+					<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-green/20 to-accent-blue/20 border border-fg/10 flex items-center justify-center">
+						<span class="font-bold gradient-text">S</span>
+					</div>
+					<div class="leading-tight">
+						<div class="text-sm text-fg/70">Portfolio</div>
+						<div class="text-base font-semibold">Sakhawat Hossain</div>
+					</div>
+				</a>
+				
+				<div class="hidden md:flex items-center gap-2">
+					<a href="#about" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('about'))}>About</a>
+					<a href="#projects" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('projects'))}>Projects</a>
+					<a href="#skills" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('skills'))}>Skills</a>
+					<a href="#blog" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('blog'))}>Writing</a>
+					<a href="#contact" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('contact'))}>Contact</a>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<button
+						onclick={toggleTheme}
+						class="p-2 rounded-xl glass-effect hover:bg-fg/5 transition-colors"
+						aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+						title={isDarkMode ? 'Light theme' : 'Dark theme'}
+					>
+						{#if isDarkMode}
+							<Sun class="w-5 h-5" />
+						{:else}
+							<Moon class="w-5 h-5" />
+						{/if}
+					</button>
+					<button
+						class="md:hidden p-2 rounded-xl glass-effect hover:bg-fg/5 transition-colors"
+						aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+						onclick={() => (mobileNavOpen = !mobileNavOpen)}
+					>
+						{#if mobileNavOpen}
+							<X class="w-5 h-5" />
+						{:else}
+							<Menu class="w-5 h-5" />
+						{/if}
+					</button>
+				</div>
 			</div>
-			
-			<button onclick={toggleTheme} class="p-2 rounded-lg glass-effect hover-lift">
-				{isDarkMode ? '☀️' : '🌙'}
-			</button>
 		</div>
+
+		{#if mobileNavOpen}
+			<div class="md:hidden px-4 sm:px-6">
+				<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 py-4">
+					<div class="grid gap-2">
+						<a href="#about" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('about'))}>About</a>
+						<a href="#projects" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('projects'))}>Projects</a>
+						<a href="#skills" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('skills'))}>Skills</a>
+						<a href="#blog" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('blog'))}>Writing</a>
+						<a href="#contact" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('contact'))}>Contact</a>
+					</div>
+				</div>
+			</div>
+		{/if}
 	</nav>
 
 	<!-- Main Content -->
-	<main class="relative z-10">
+	<main class="relative z-10 pt-24">
 		{@render children()}
 	</main>
 
