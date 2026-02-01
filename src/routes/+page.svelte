@@ -1,16 +1,24 @@
 <script lang="ts">
+	// Import dependencies
 	import { onMount } from 'svelte';
 	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github, Copy, Mail, X, ArrowUpRight } from 'lucide-svelte';
 
+	// Component state for typewriter effect
 	let currentText = $state('');
 	let fullText = 'Developer & Learner';
 	let charIndex = $state(0);
 	let isDeleting = $state(false);
+	
+	// Modal and interaction state
 	let showEmailPopup = $state(false);
 	let copySuccess = $state(false);
 	const email = 'sakhawathossain3141@gmail.com';
 	let modalPanel: HTMLDivElement | null = $state(null);
 	
+	/**
+	 * Smooth scroll to a specific element by ID
+	 * @param elementId - The ID of the element to scroll to
+	 */
 	function smoothScrollTo(elementId: string) {
 		const element = document.getElementById(elementId);
 		if (element) {
@@ -18,10 +26,14 @@
 		}
 	}
 	
+	/**
+	 * Copy email address to clipboard with user feedback
+	 */
 	async function copyEmail() {
 		try {
 			await navigator.clipboard.writeText(email);
 			copySuccess = true;
+			// Reset success state after 2 seconds
 			setTimeout(() => {
 				copySuccess = false;
 			}, 2000);
@@ -30,14 +42,20 @@
 		}
 	}
 	
+	/**
+	 * Open default email client with pre-filled email
+	 */
 	function openEmailClient() {
 		window.location.href = `mailto:${email}`;
 	}
 	
-	// Projects filtering
+	// Projects filtering state and data
 	let selectedCategory = $state('all');
 	const categories = ['all', 'web', 'mobile', 'design', 'opensource'];
 	
+	/**
+	 * Project interface for type safety
+	 */
 	interface Project {
 		title: string;
 		description: string;
@@ -47,6 +65,9 @@
 		sourceUrl?: string;
 	}
 	
+	/**
+	 * Sample projects data - in a real app, this would come from a CMS or API
+	 */
 	const projects: Project[] = [
 		{
 			title: 'Portfolio Website',
@@ -72,13 +93,24 @@
 		}
 	];
 	
+	/**
+	 * Computed property for filtered projects based on selected category
+	 */
 	const filteredProjects = $derived(selectedCategory === 'all' 
 		? projects 
 		: projects.filter(p => p.category === selectedCategory));
 
+	// Component lifecycle: Initialize typewriter effect and keyboard listeners
 	onMount(() => {
+		// Typewriter effect state management
 		let timeoutId: ReturnType<typeof setTimeout> | null = null;
 		let cancelled = false;
+		
+		/**
+		 * Schedule a function to run after a delay, with cancellation support
+		 * @param fn - Function to schedule
+		 * @param ms - Delay in milliseconds
+		 */
 		const schedule = (fn: () => void, ms: number) => {
 			timeoutId = setTimeout(() => {
 				if (cancelled) return;
@@ -86,34 +118,50 @@
 			}, ms);
 		};
 
+		/**
+		 * Typewriter animation effect for the hero section
+		 * Types and deletes text character by character
+		 */
 		const typeWriter = () => {
 			if (cancelled) return;
+			
+			// Typing forward
 			if (!isDeleting && charIndex < fullText.length) {
 				currentText += fullText.charAt(charIndex);
 				charIndex++;
-				schedule(typeWriter, 100);
-			} else if (isDeleting && charIndex > 0) {
+				schedule(typeWriter, 100); // Typing speed
+			} 
+			// Deleting backward
+			else if (isDeleting && charIndex > 0) {
 				currentText = currentText.substring(0, charIndex - 1);
 				charIndex--;
-				schedule(typeWriter, 50);
-			} else if (!isDeleting && charIndex === fullText.length) {
+				schedule(typeWriter, 50); // Deleting speed (faster)
+			} 
+			// Pause at end of typing, then start deleting
+			else if (!isDeleting && charIndex === fullText.length) {
 				schedule(() => {
 					isDeleting = true;
 					typeWriter();
-				}, 2000);
-			} else if (isDeleting && charIndex === 0) {
+				}, 2000); // Pause before deleting
+			} 
+			// Start typing again after deletion
+			else if (isDeleting && charIndex === 0) {
 				isDeleting = false;
-				schedule(typeWriter, 500);
+				schedule(typeWriter, 500); // Pause before retyping
 			}
 		};
+		
+		// Start the typewriter effect
 		typeWriter();
 
+		// Keyboard navigation: close modal on Escape key
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key !== 'Escape') return;
 			showEmailPopup = false;
 		};
 		window.addEventListener('keydown', onKeyDown);
 
+		// Cleanup function for timeouts and event listeners
 		return () => {
 			cancelled = true;
 			if (timeoutId !== null) clearTimeout(timeoutId);
@@ -124,46 +172,56 @@
 
 <!-- Hero Section -->
 <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+	<!-- Animated gradient background -->
 	<div class="absolute inset-0 gradient-bg animate-gradient opacity-30"></div>
 	
+	<!-- Hero content container -->
 	<div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+		<!-- Main heading with typewriter effect -->
 		<div class="mb-8">
 			<h1 class="text-5xl md:text-7xl font-bold mb-6">
 				<span class="gradient-text">Hi, I'm Sakhawat.</span>
 				<br />
+				<!-- Typewriter animation container -->
 				<span class="inline-flex items-baseline justify-center whitespace-nowrap">
 					<span class="text-fg">{currentText}</span>
 					<span class="animate-pulse">|</span>
 				</span>
 			</h1>
 			
+			<!-- Hero description -->
 			<p class="text-xl md:text-2xl text-fg/80 mb-8 max-w-3xl mx-auto">
 				I build clean, modern web experiences with strong UX, crisp UI, and attention to performance.
 			</p>
 		</div>
 
+		<!-- Call-to-action buttons -->
 		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
 			<button onclick={() => smoothScrollTo('projects')} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
 				View Projects
 			</button>
 			<button onclick={() => smoothScrollTo('contact')} class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20">
-				Let’s Talk
+				Let's Talk
 			</button>
 		</div>
 
+		<!-- Feature highlights grid -->
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+			<!-- Clean Code feature -->
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Code class="w-12 h-12 text-accent-green mx-auto mb-4" />
 				<h3 class="text-xl font-semibold mb-2">Clean Code</h3>
 				<p class="text-fg/70">Readable, maintainable, and built to scale.</p>
 			</div>
 			
+			<!-- Design Taste feature -->
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Palette class="w-12 h-12 text-accent-blue mx-auto mb-4" />
 				<h3 class="text-xl font-semibold mb-2">Design Taste</h3>
 				<p class="text-fg/70">Modern UI with careful spacing and typography.</p>
 			</div>
 			
+			<!-- Performance feature -->
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Zap class="w-12 h-12 text-accent-green mx-auto mb-4" />
 				<h3 class="text-xl font-semibold mb-2">Fast by Default</h3>
@@ -172,6 +230,7 @@
 		</div>
 	</div>
 
+	<!-- Scroll indicator -->
 	<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
 		<ChevronDown class="w-8 h-8 text-accent-green" />
 	</div>

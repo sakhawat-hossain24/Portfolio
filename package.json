@@ -3,6 +3,8 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"description": "Personal portfolio website for Sakhawat Hossain - Creative Developer",
+	"author": "Sakhawat Hossain",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",

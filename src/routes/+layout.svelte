@@ -1,14 +1,21 @@
 <script lang="ts">
+	// Import dependencies
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import { Menu, X, Sun, Moon } from 'lucide-svelte';
 
+	// Component props
 	let { children } = $props();
+
+	// Reactive state management
 	let theme = $state<'dark' | 'light'>('dark');
 	const isDarkMode = $derived(theme === 'dark');
 	let mobileNavOpen = $state(false);
 
-	// Smooth scroll function
+	/**
+	 * Smooth scroll to a specific element by ID
+	 * @param elementId - The ID of the element to scroll to
+	 */
 	function smoothScrollTo(elementId: string) {
 		const element = document.getElementById(elementId);
 		if (element) {
@@ -16,28 +23,45 @@
 		}
 	}
 
+	/**
+	 * Navigate to a section and close mobile navigation
+	 * @param elementId - The ID of the section to navigate to
+	 */
 	function navigateToSection(elementId: string) {
 		mobileNavOpen = false;
 		smoothScrollTo(elementId);
 	}
 
+	/**
+	 * Apply theme changes to DOM and localStorage
+	 * @param nextTheme - The theme to apply ('dark' or 'light')
+	 */
 	function applyTheme(nextTheme: 'dark' | 'light') {
 		theme = nextTheme;
 		document.documentElement.dataset.theme = nextTheme;
 		localStorage.setItem('theme', nextTheme);
 	}
 
+	/**
+	 * Toggle between dark and light themes
+	 */
 	function toggleTheme() {
 		applyTheme(theme === 'dark' ? 'light' : 'dark');
 	}
 
+	// Component lifecycle: Initialize theme, scroll progress, and event listeners
 	onMount(() => {
+		// Load saved theme from localStorage or default to dark
 		const saved = localStorage.getItem('theme');
 		applyTheme(saved === 'light' ? 'light' : 'dark');
 		
-		// Add scroll progress indicator
+		// Scroll progress indicator setup
 		let rafId: number | null = null;
 		const progressBar = document.getElementById('scroll-progress');
+		
+		/**
+		 * Update scroll progress bar width based on scroll position
+		 */
 		const updateScrollProgress = () => {
 			rafId = null;
 			const scrollTop = window.scrollY;
@@ -49,19 +73,25 @@
 			}
 		};
 
+		/**
+		 * Handle scroll events with requestAnimationFrame for performance
+		 */
 		const onScroll = () => {
 			if (rafId !== null) return;
 			rafId = window.requestAnimationFrame(updateScrollProgress);
 		};
 
+		// Add scroll event listener
 		window.addEventListener('scroll', onScroll, { passive: true });
 		updateScrollProgress();
 
+		// Keyboard navigation: close mobile nav on Escape key
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') mobileNavOpen = false;
 		};
 		window.addEventListener('keydown', onKeyDown);
 
+		// Cleanup function for event listeners
 		return () => {
 			window.removeEventListener('scroll', onScroll);
 			window.removeEventListener('keydown', onKeyDown);
@@ -70,19 +100,23 @@
 	});
 </script>
 
+<!-- SEO Meta Tags -->
 <svelte:head>
 	<title>Portfolio - Creative Developer</title>
 	<meta name="description" content="Creative developer portfolio with modern design" />
 </svelte:head>
 
+<!-- Main Application Container -->
 <div class="min-h-screen bg-dark-bg text-fg relative">
-	<!-- Scroll Progress Bar -->
+	<!-- Scroll Progress Indicator -->
 	<div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent-green to-accent-blue z-50 transition-all duration-300" style="width: 0%"></div>
 	
-	<!-- Navigation -->
+	<!-- Navigation Header -->
 	<nav class="fixed top-0 w-full z-40">
 		<div class="px-4 sm:px-6 py-4">
+			<!-- Navigation Bar with Logo and Links -->
 			<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
+				<!-- Logo/Brand Section -->
 				<a href="#hero" class="flex items-center gap-3" onclick={(e) => (e.preventDefault(), navigateToSection('hero'))} aria-label="Go to top">
 					<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-green/20 to-accent-blue/20 border border-fg/10 flex items-center justify-center">
 						<span class="font-bold gradient-text">S</span>
@@ -93,6 +127,7 @@
 					</div>
 				</a>
 				
+				<!-- Desktop Navigation Links -->
 				<div class="hidden md:flex items-center gap-2">
 					<a href="#about" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('about'))}>About</a>
 					<a href="#projects" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('projects'))}>Projects</a>
@@ -101,7 +136,9 @@
 					<a href="#contact" class="px-3 py-2 rounded-lg hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('contact'))}>Contact</a>
 				</div>
 
+				<!-- Theme Toggle and Mobile Menu Buttons -->
 				<div class="flex items-center gap-2">
+					<!-- Theme Toggle Button -->
 					<button
 						onclick={toggleTheme}
 						class="p-2 rounded-xl glass-effect hover:bg-fg/5 transition-colors"
@@ -114,6 +151,7 @@
 							<Moon class="w-5 h-5" />
 						{/if}
 					</button>
+					<!-- Mobile Menu Toggle -->
 					<button
 						class="md:hidden p-2 rounded-xl glass-effect hover:bg-fg/5 transition-colors"
 						aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
@@ -129,6 +167,7 @@
 			</div>
 		</div>
 
+		<!-- Mobile Navigation Menu -->
 		{#if mobileNavOpen}
 			<div class="md:hidden px-4 sm:px-6">
 				<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 py-4">
@@ -144,12 +183,12 @@
 		{/if}
 	</nav>
 
-	<!-- Main Content -->
+	<!-- Main Content Area -->
 	<main class="relative z-10 pt-24">
 		{@render children()}
 	</main>
 
-	<!-- Floating Background Elements -->
+	<!-- Animated Background Elements -->
 	<div class="fixed inset-0 overflow-hidden pointer-events-none">
 		<div class="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-accent-green/20 to-accent-blue/20 rounded-full blur-3xl animate-float"></div>
 		<div class="absolute top-40 right-20 w-96 h-96 bg-gradient-to-br from-accent-blue/20 to-purple-500/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s"></div>

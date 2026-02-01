@@ -1,28 +1,51 @@
+/* Import TailwindCSS base styles */
 @import "tailwindcss";
 
+/* ============================================
+   CSS Custom Properties (Theme Variables)
+   ============================================ */
 @theme {
-  --color-dark-bg: #0a0a0f;
-  --color-dark-surface: #1a1a2e;
-  --color-dark-accent: #16213e;
+  /* Dark theme color palette */
+  --color-dark-bg: #0a0a0f;        /* Main background */
+  --color-dark-surface: #1a1a2e;   /* Card/surface background */
+  --color-dark-accent: #16213e;    /* Hover/accent background */
+  
+  /* Gradient colors for backgrounds */
   --color-gradient-start: #0f3460;
   --color-gradient-mid: #164b60;
   --color-gradient-end: #1e6ba8;
-  --color-accent-green: #00d4aa;
-  --color-accent-blue: #00a8ff;
-  --color-fg: #ffffff;
+  
+  /* Accent colors for branding */
+  --color-accent-green: #00d4aa;   /* Primary accent */
+  --color-accent-blue: #00a8ff;    /* Secondary accent */
+  
+  /* Text colors */
+  --color-fg: #ffffff;             /* Primary text */
 }
 
- :root[data-theme='light'] {
-  --color-dark-bg: #f8fafc;
-  --color-dark-surface: #ffffff;
-  --color-dark-accent: #e2e8f0;
+/* ============================================
+   Light Theme Override
+   ============================================ */
+:root[data-theme='light'] {
+  /* Light theme color palette */
+  --color-dark-bg: #f8fafc;        /* Light main background */
+  --color-dark-surface: #ffffff;   /* Light card/surface */
+  --color-dark-accent: #e2e8f0;    /* Light hover/accent */
+  
+  /* Light gradient colors */
   --color-gradient-start: #e0f2fe;
   --color-gradient-mid: #dcfce7;
   --color-gradient-end: #dbeafe;
-  --color-fg: #0b1220;
+  
+  /* Light theme text */
+  --color-fg: #0b1220;             /* Dark text for light background */
  }
 
+/* ============================================
+   Base Layer Styles
+   ============================================ */
 @layer base {
+  /* Global scroll behavior */
   :root {
     --scroll-behavior: smooth;
   }
@@ -31,14 +54,17 @@
     scroll-behavior: smooth;
   }
   
+  /* Base body styles */
   body {
     @apply bg-dark-bg text-fg overflow-x-hidden antialiased;
   }
 
+  /* Text selection styling */
   ::selection {
     background: color-mix(in oklab, var(--color-accent-blue) 25%, transparent);
   }
 
+  /* Focus visible styles for accessibility */
   :focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent-green) 45%, transparent);
@@ -46,39 +72,57 @@
   }
 }
 
+/* ============================================
+   Component Layer Styles
+   ============================================ */
 @layer components {
+  /* Gradient text effect for headings */
   .gradient-text {
     @apply bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent;
   }
   
+  /* Gradient background for sections */
   .gradient-bg {
     @apply bg-gradient-to-br from-gradient-start via-gradient-mid to-gradient-end;
   }
   
+  /* Glass morphism effect for cards and navigation */
   .glass-effect {
     @apply bg-dark-surface/75 backdrop-blur-md border border-fg/10;
   }
   
+  /* Hover lift animation for interactive elements */
   .hover-lift {
     @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl;
   }
 }
 
+/* ============================================
+   Utility Layer Styles
+   ============================================ */
 @layer utilities {
+  /* Text shadow utility */
   .text-shadow {
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
   
+  /* Animated gradient background */
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
   }
 
+  /* Floating animation for background elements */
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 }
 
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+/* Gradient background animation */
 @keyframes gradient {
   0%, 100% {
     background-position: 0% 50%;
@@ -88,6 +132,7 @@
   }
 }
 
+/* Floating animation for decorative elements */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
