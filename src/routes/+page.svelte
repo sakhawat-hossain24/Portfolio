@@ -189,11 +189,11 @@
 			
 			<!-- Hero description -->
 			<p class="text-lg md:text-xl text-fg/80 mb-2 max-w-2xl mx-auto">
-				I build clean, modern web experiences with strong UX, crisp UI, and attention to performance.
+				I build things, break them, and rebuild them, learning from what doesn't go well.
 			</p>
 		</div>
 
-		<!-- Call-to-action buttons -->
+		<!-- Call-to-action bwwuttons -->
 		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
 			<button onclick={() => smoothScrollTo('projects')} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
 				View Projects
@@ -209,21 +209,21 @@
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Code class="w-12 h-12 text-accent-green mx-auto mb-4" />
 				<h3 class="text-xl font-semibold mb-2">Clean Code</h3>
-				<p class="text-fg/70">Readable, maintainable, and built to scale.</p>
+				<p class="text-fg/70">Learning to write code that's readable and maintainable.</p>
 			</div>
 			
 			<!-- Design Taste feature -->
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Palette class="w-12 h-12 text-accent-blue mx-auto mb-4" />
-				<h3 class="text-xl font-semibold mb-2">Design Taste</h3>
-				<p class="text-fg/70">Modern UI with careful spacing and typography.</p>
+				<h3 class="text-xl font-semibold mb-2">Design with Intent</h3>
+				<p class="text-fg/70">Exploring modern UI, spacing, and typography.</p>
 			</div>
 			
 			<!-- Performance feature -->
 			<div class="glass-effect p-6 rounded-xl hover-lift">
 				<Zap class="w-12 h-12 text-accent-green mx-auto mb-4" />
 				<h3 class="text-xl font-semibold mb-2">Fast by Default</h3>
-				<p class="text-fg/70">Performance-first choices and smooth interactions.</p>
+				<p class="text-fg/70">Thinking about performance from the start.</p>
 			</div>
 		</div>
 	</div>
@@ -244,10 +244,10 @@
 		<div class="grid md:grid-cols-2 gap-12 items-center">
 			<div class="space-y-6">
 				<p class="text-lg text-fg/80">
-					I enjoy building products end-to-end: from clean component architecture to delightful UI details.
+					I enjoy building products end-to-end, from structuring components to refining UI details.
 				</p>
 				<p class="text-lg text-fg/80">
-					My current focus is modern frontend development, design systems, and performance.
+					I'm currently focused on learning modern frontend development, exploring design systems, and becoming more performance-aware.
 				</p>
 				<div class="flex flex-wrap gap-3">
 					<span class="px-4 py-2 glass-effect rounded-full text-sm">HTML</span>
@@ -400,7 +400,7 @@
 			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 				<div class="glass-effect p-6 rounded-xl hover-lift">
 					<div class="text-sm text-fg/60 mb-2">Frontend</div>
-					<div class="text-lg font-semibold mb-4">UI that feels premium</div>
+					<div class="text-lg font-semibold mb-4">Learning to build clear, responsive interfaces</div>
 					<div class="flex flex-wrap gap-2">
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">SvelteKit</span>
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">React</span>
@@ -410,17 +410,16 @@
 				</div>
 				<div class="glass-effect p-6 rounded-xl hover-lift">
 					<div class="text-sm text-fg/60 mb-2">Backend</div>
-					<div class="text-lg font-semibold mb-4">Pragmatic APIs</div>
+					<div class="text-lg font-semibold mb-4">Building simple APIs that get the job done</div>
 					<div class="flex flex-wrap gap-2">
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Node.js</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">REST</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Auth</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Supabase</span>
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">SQL</span>
 					</div>
 				</div>
 				<div class="glass-effect p-6 rounded-xl hover-lift">
 					<div class="text-sm text-fg/60 mb-2">Design</div>
-					<div class="text-lg font-semibold mb-4">System thinking</div>
+					<div class="text-lg font-semibold mb-4">Thinking in components and systems</div>
 					<div class="flex flex-wrap gap-2">
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Figma</span>
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Design Systems</span>
@@ -429,11 +428,11 @@
 				</div>
 				<div class="glass-effect p-6 rounded-xl hover-lift">
 					<div class="text-sm text-fg/60 mb-2">Workflow</div>
-					<div class="text-lg font-semibold mb-4">Ship reliably</div>
+					<div class="text-lg font-semibold mb-4">Learning to ship and iterate</div>
 					<div class="flex flex-wrap gap-2">
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Git</span>
 						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Code Review</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">CI</span>
+						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Docker</span>
 					</div>
 				</div>
 			</div>
