@@ -139,29 +139,29 @@
 
 				<!-- Theme Toggle and Mobile Menu Buttons -->
 				<div class="flex items-center gap-2">
-					<!-- Theme Toggle Button -->
-					<button
-						onclick={toggleTheme}
-						class="p-2 rounded-xl glass-effect hover:bg-fg/5 transition-colors"
-						aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
-						title={isDarkMode ? 'Light theme' : 'Dark theme'}
-					>
-						{#if isDarkMode}
-							<Sun class="w-5 h-5" />
-						{:else}
-							<Moon class="w-5 h-5" />
-						{/if}
-					</button>
+						<!-- Theme Toggle Button -->
+						<button
+							onclick={toggleTheme}
+							class="hidden md:flex p-3 rounded-xl glass-effect hover:bg-fg/5 transition-colors touch-manipulation"
+							aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+							title={isDarkMode ? 'Light theme' : 'Dark theme'}
+						>
+							{#if isDarkMode}
+								<Sun class="w-5 h-5" />
+							{:else}
+								<Moon class="w-5 h-5" />
+							{/if}
+						</button>
 					<!-- Mobile Menu Toggle -->
 					<button
-						class="md:hidden p-2 rounded-xl glass-effect hover:bg-fg/5 transition-colors"
+						class="md:hidden p-3 rounded-xl glass-effect hover:bg-fg/5 transition-colors touch-manipulation"
 						aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
 						onclick={() => (mobileNavOpen = !mobileNavOpen)}
 					>
 						{#if mobileNavOpen}
-							<X class="w-5 h-5" />
+							<X class="w-6 h-6" />
 						{:else}
-							<Menu class="w-5 h-5" />
+							<Menu class="w-6 h-6" />
 						{/if}
 					</button>
 				</div>
@@ -170,14 +170,31 @@
 
 		<!-- Mobile Navigation Menu -->
 		{#if mobileNavOpen}
-			<div class="md:hidden px-4 sm:px-6">
-				<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 py-4">
-					<div class="grid gap-2">
-						<a href="#about" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('about'))}>About</a>
-						<a href="#projects" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('projects'))}>Projects</a>
-						<a href="#skills" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('skills'))}>Skills</a>
-						<a href="#blog" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('blog'))}>Writing</a>
-						<a href="#contact" class="px-4 py-3 rounded-xl hover:bg-fg/5 transition-colors" onclick={(e) => (e.preventDefault(), navigateToSection('contact'))}>Contact</a>
+			<div class="md:hidden fixed inset-0 top-16 z-30 px-4 sm:px-6 pt-4">
+				<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 py-6 max-h-[calc(100vh-6rem)] overflow-y-auto">
+					<div class="grid gap-1">
+						<a href="#about" class="px-4 py-4 rounded-xl hover:bg-fg/5 transition-colors text-lg font-medium" onclick={(e) => (e.preventDefault(), navigateToSection('about'))}>About</a>
+						<a href="#projects" class="px-4 py-4 rounded-xl hover:bg-fg/5 transition-colors text-lg font-medium" onclick={(e) => (e.preventDefault(), navigateToSection('projects'))}>Projects</a>
+						<a href="#skills" class="px-4 py-4 rounded-xl hover:bg-fg/5 transition-colors text-lg font-medium" onclick={(e) => (e.preventDefault(), navigateToSection('skills'))}>Skills</a>
+						<a href="#blog" class="px-4 py-4 rounded-xl hover:bg-fg/5 transition-colors text-lg font-medium" onclick={(e) => (e.preventDefault(), navigateToSection('blog'))}>Writing</a>
+						<a href="#contact" class="px-4 py-4 rounded-xl hover:bg-fg/5 transition-colors text-lg font-medium" onclick={(e) => (e.preventDefault(), navigateToSection('contact'))}>Contact</a>
+					</div>
+					
+					<!-- Mobile theme toggle in menu -->
+					<div class="mt-6 pt-6 border-t border-fg/10">
+						<button
+							onclick={toggleTheme}
+							class="w-full px-4 py-3 rounded-xl glass-effect hover:bg-fg/5 transition-colors flex items-center justify-center gap-3 font-medium"
+							aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+						>
+							{#if isDarkMode}
+								<Sun class="w-5 h-5" />
+								<span>Light Theme</span>
+							{:else}
+								<Moon class="w-5 h-5" />
+								<span>Dark Theme</span>
+							{/if}
+						</button>
 					</div>
 				</div>
 			</div>

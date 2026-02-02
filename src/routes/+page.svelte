@@ -75,7 +75,7 @@
 			description: 'A fast, animated, and responsive portfolio built with SvelteKit + Tailwind.',
 			category: 'web',
 			tech: ['SvelteKit', 'TypeScript', 'TailwindCSS'],
-			image: '/Portfolio/projects/portfolio_screenshot.png',
+			image: '/Portfolio/projects/portfolio-screenshot.png',
 			liveUrl: 'https://sakhawat-hossain24.github.io/Portfolio/',
 			sourceUrl: 'https://github.com/sakhawat-hossain24/Portfolio'
 		},
@@ -159,24 +159,24 @@
 </script>
 
 <!-- Hero Section -->
-<section id="hero" class="min-h-screen flex items-start justify-center relative overflow-hidden pt-8">
+<section id="hero" class="min-h-screen flex items-start justify-center relative overflow-hidden pt-12 sm:pt-8">
 	<!-- Animated gradient background -->
 	<div class="absolute inset-0 gradient-bg animate-gradient opacity-30"></div>
 	
 	<!-- Hero content container -->
-	<div class="relative z-10 text-center px-6 max-w-6xl mx-auto mt-8">
+	<div class="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto mt-6 sm:mt-8">
 		<!-- Main heading with typewriter effect -->
 		<div>
 			<!-- Profile picture and name container -->
 			<div class="flex flex-col items-center">
-				<div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 ring-4 ring-fg/10 glass-effect">
+				<div class="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 sm:mb-6 ring-4 ring-fg/10 glass-effect">
 					<img 
 						src="/Portfolio/projects/profile-picture.png" 
 						alt="Sakhawat Hossain" 
 						class="w-full h-full object-cover"
 					/>
 				</div>
-				<h1 class="text-4xl md:text-6xl font-bold text-center mb-3">
+				<h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-2 sm:mb-3">
 					<span class="gradient-text">Hi, I'm Sakhawat.</span>
 					<br />
 					<!-- Typewriter animation container -->
@@ -188,110 +188,110 @@
 			</div>
 			
 			<!-- Hero description -->
-			<p class="text-lg md:text-xl text-fg/80 mb-2 max-w-2xl mx-auto">
+			<p class="text-base sm:text-lg md:text-xl text-fg/80 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
 				I build things, break them, and rebuild them, learning from what doesn't go well.
 			</p>
 		</div>
 
-		<!-- Call-to-action bwwuttons -->
-		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-			<button onclick={() => smoothScrollTo('projects')} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
+		<!-- Call-to-action buttons -->
+		<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16">
+			<button onclick={() => smoothScrollTo('projects')} class="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift text-base sm:text-lg touch-manipulation">
 				View Projects
 			</button>
-			<button onclick={() => smoothScrollTo('contact')} class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20">
+			<button onclick={() => smoothScrollTo('contact')} class="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 text-base sm:text-lg touch-manipulation">
 				Let's Talk
 			</button>
 		</div>
 
 		<!-- Feature highlights grid -->
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
 			<!-- Clean Code feature -->
-			<div class="glass-effect p-6 rounded-xl hover-lift">
-				<Code class="w-12 h-12 text-accent-green mx-auto mb-4" />
-				<h3 class="text-xl font-semibold mb-2">Clean Code</h3>
-				<p class="text-fg/70">Learning to write code that's readable and maintainable.</p>
+			<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+				<Code class="w-10 h-10 sm:w-12 sm:h-12 text-accent-green mx-auto mb-3 sm:mb-4" />
+				<h3 class="text-lg sm:text-xl font-semibold mb-2">Clean Code</h3>
+				<p class="text-sm sm:text-base text-fg/70">Learning to write code that's readable and maintainable.</p>
 			</div>
 			
 			<!-- Design Taste feature -->
-			<div class="glass-effect p-6 rounded-xl hover-lift">
-				<Palette class="w-12 h-12 text-accent-blue mx-auto mb-4" />
-				<h3 class="text-xl font-semibold mb-2">Design with Intent</h3>
-				<p class="text-fg/70">Exploring modern UI, spacing, and typography.</p>
+			<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+				<Palette class="w-10 h-10 sm:w-12 sm:h-12 text-accent-blue mx-auto mb-3 sm:mb-4" />
+				<h3 class="text-lg sm:text-xl font-semibold mb-2">Design with Intent</h3>
+				<p class="text-sm sm:text-base text-fg/70">Exploring modern UI, spacing, and typography.</p>
 			</div>
 			
 			<!-- Performance feature -->
-			<div class="glass-effect p-6 rounded-xl hover-lift">
-				<Zap class="w-12 h-12 text-accent-green mx-auto mb-4" />
-				<h3 class="text-xl font-semibold mb-2">Fast by Default</h3>
-				<p class="text-fg/70">Thinking about performance from the start.</p>
+			<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+				<Zap class="w-10 h-10 sm:w-12 sm:h-12 text-accent-green mx-auto mb-3 sm:mb-4" />
+				<h3 class="text-lg sm:text-xl font-semibold mb-2">Fast by Default</h3>
+				<p class="text-sm sm:text-base text-fg/70">Thinking about performance from the start.</p>
 			</div>
 		</div>
 	</div>
 
 	<!-- Scroll indicator -->
-	<div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 animate-bounce">
-		<ChevronDown class="w-8 h-8 text-accent-green" />
+	<div class="absolute bottom-24 sm:bottom-32 left-1/2 transform -translate-x-1/2 animate-bounce">
+		<ChevronDown class="w-6 h-6 sm:w-8 sm:h-8 text-accent-green" />
 	</div>
 </section>
 
 <!-- About Section -->
-<section id="about" class="py-24 px-6">
+<section id="about" class="py-16 sm:py-24 px-4 sm:px-6">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+		<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
 			<span class="gradient-text">About Me</span>
 		</h2>
 		
-		<div class="grid md:grid-cols-2 gap-12 items-center">
-			<div class="space-y-6">
-				<p class="text-lg text-fg/80">
+		<div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+			<div class="space-y-4 sm:space-y-6">
+				<p class="text-base sm:text-lg text-fg/80 leading-relaxed">
 					I enjoy building products end-to-end, from structuring components to refining UI details.
 				</p>
-				<p class="text-lg text-fg/80">
+				<p class="text-base sm:text-lg text-fg/80 leading-relaxed">
 					I'm currently focused on learning modern frontend development, exploring design systems, and becoming more performance-aware.
 				</p>
-				<div class="flex flex-wrap gap-3">
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">HTML</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">CSS</span>
-					<span class="px-4 py-2 glass-effect rounded-full text-sm">JavaScript</span>
-					<span class="px-4 py-2 glass-effect rounded-full text sm">Python</span>
-					<span class="px-4 py-2 glass-effect rounded-full text sm">SQL</span>
-					<span class="px-4 py-2 glass-effect rounded-full text sm">Git</span>
-					<span class="px-4 py-2 glass-effect rounded-full text sm">Docker</span>
-					<span class="px-4 py-2 glass-effect rounded-full text sm">Supabase</span>
-					<span class="px-4 py-2 glass-effect rounded-full text sm">Linux</span>
+				<div class="flex flex-wrap gap-2 sm:gap-3">
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">HTML</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">CSS</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">JavaScript</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">Python</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">SQL</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">Git</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">Docker</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">Supabase</span>
+					<span class="px-3 sm:px-4 py-1.5 sm:py-2 glass-effect rounded-full text-xs sm:text-sm">Linux</span>
 				</div>
 			</div>
 			
 			<div class="relative">
-				<div class="glass-effect p-8 rounded-2xl">
-					<div class="space-y-6">
+				<div class="glass-effect p-6 sm:p-8 rounded-2xl">
+					<div class="space-y-4 sm:space-y-6">
 						<div>
 							<div class="flex justify-between mb-2">
-								<span class="text-fg/80">Frontend Development</span>
-								<span class="text-accent-green">30%</span>
+								<span class="text-sm sm:text-base text-fg/80">Frontend Development</span>
+								<span class="text-sm sm:text-base text-accent-green">30%</span>
 							</div>
-							<div class="w-full bg-gray-700 rounded-full h-3">
-								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-3 rounded-full" style="width: 30%"></div>
+							<div class="w-full bg-gray-700 rounded-full h-2 sm:h-3">
+								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-2 sm:h-3 rounded-full" style="width: 30%"></div>
 							</div>
 						</div>
 						
 						<div>
 							<div class="flex justify-between mb-2">
-								<span class="text-fg/80">UI/UX Design</span>
-								<span class="text-accent-blue">10%</span>
+								<span class="text-sm sm:text-base text-fg/80">UI/UX Design</span>
+								<span class="text-sm sm:text-base text-accent-blue">10%</span>
 							</div>
-							<div class="w-full bg-gray-700 rounded-full h-3">
-								<div class="bg-gradient-to-r from-accent-blue to-accent-green h-3 rounded-full" style="width: 10%"></div>
+							<div class="w-full bg-gray-700 rounded-full h-2 sm:h-3">
+								<div class="bg-gradient-to-r from-accent-blue to-accent-green h-2 sm:h-3 rounded-full" style="width: 10%"></div>
 							</div>
 						</div>
 						
 						<div>
 							<div class="flex justify-between mb-2">
-								<span class="text-fg/80">Backend Development</span>
-								<span class="text-accent-green">50%</span>
+								<span class="text-sm sm:text-base text-fg/80">Backend Development</span>
+								<span class="text-sm sm:text-base text-accent-green">50%</span>
 							</div>
-							<div class="w-full bg-gray-700 rounded-full h-3">
-								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-3 rounded-full" style="width: 50%"></div>
+							<div class="w-full bg-gray-700 rounded-full h-2 sm:h-3">
+								<div class="bg-gradient-to-r from-accent-green to-accent-blue h-2 sm:h-3 rounded-full" style="width: 50%"></div>
 							</div>
 						</div>
 					</div>
@@ -302,19 +302,19 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="py-24 px-6">
+<section id="projects" class="py-16 sm:py-24 px-4 sm:px-6">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+		<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
 			<span class="gradient-text">Projects</span>
 		</h2>
 		
 		<!-- Category Filter -->
-		<div class="flex justify-center mb-12">
+		<div class="flex justify-center mb-8 sm:mb-12">
 			<div class="glass-effect p-2 rounded-xl">
-				<div class="flex flex-wrap gap-2">
+				<div class="flex flex-wrap gap-2 justify-center">
 					{#each categories as category}
 						<button
-							class={`px-4 py-2 rounded-lg transition-all duration-300 ${
+							class={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base ${
 								selectedCategory === category
 									? 'bg-gradient-to-r from-accent-green to-accent-blue text-fg'
 									: 'text-fg/70 hover:text-fg'
@@ -330,15 +330,15 @@
 		
 		<!-- Projects Grid -->
 		{#if filteredProjects.length === 0}
-			<div class="text-center py-16">
-				<p class="text-xl text-fg/60 mb-4">No projects found</p>
+			<div class="text-center py-12 sm:py-16">
+				<p class="text-lg sm:text-xl text-fg/60 mb-4">No projects found</p>
 				<p class="text-fg/40">Check back later for new projects!</p>
 			</div>
 		{:else}
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 				{#each filteredProjects as project}
 					<div class="glass-effect rounded-xl overflow-hidden hover-lift group">
-						<div class="h-48 bg-gradient-to-br from-dark-accent to-dark-surface relative overflow-hidden">
+						<div class="h-40 sm:h-48 bg-gradient-to-br from-dark-accent to-dark-surface relative overflow-hidden">
 							{#if project.image}
 								<img 
 									src={project.image} 
@@ -347,36 +347,36 @@
 								/>
 							{:else}
 								<div class="absolute inset-0 flex items-center justify-center">
-									<div class="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
+									<div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg opacity-50"></div>
 								</div>
 							{/if}
-							<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+							<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 sm:gap-4">
 								{#if project.liveUrl}
-									<a href={project.liveUrl} class="p-2 glass-effect rounded-lg hover-lift" target={project.liveUrl.startsWith('#') ? undefined : '_blank'} rel={project.liveUrl.startsWith('#') ? undefined : 'noopener noreferrer'} aria-label="Open live project">
-										<ExternalLink class="w-5 h-5" />
+									<a href={project.liveUrl} class="p-2 sm:p-2 glass-effect rounded-lg hover-lift" target={project.liveUrl.startsWith('#') ? undefined : '_blank'} rel={project.liveUrl.startsWith('#') ? undefined : 'noopener noreferrer'} aria-label="Open live project">
+										<ExternalLink class="w-4 h-4 sm:w-5 sm:h-5" />
 									</a>
 								{/if}
 								{#if project.sourceUrl}
-									<a href={project.sourceUrl} class="p-2 glass-effect rounded-lg hover-lift" target="_blank" rel="noopener noreferrer" aria-label="Open source code">
-										<Github class="w-5 h-5" />
+									<a href={project.sourceUrl} class="p-2 sm:p-2 glass-effect rounded-lg hover-lift" target="_blank" rel="noopener noreferrer" aria-label="Open source code">
+										<Github class="w-4 h-4 sm:w-5 sm:h-5" />
 									</a>
 								{/if}
 							</div>
 						</div>
 						
-						<div class="p-6">
-							<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-							<p class="text-fg/70 mb-4">{project.description}</p>
-							<div class="flex flex-wrap gap-2">
+						<div class="p-4 sm:p-6">
+							<h3 class="text-lg sm:text-xl font-semibold mb-2">{project.title}</h3>
+							<p class="text-sm sm:text-base text-fg/70 mb-4">{project.description}</p>
+							<div class="flex flex-wrap gap-1.5 sm:gap-2">
 								{#each project.tech as tech}
-									<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">{tech}</span>
+									<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">{tech}</span>
 								{/each}
 							</div>
 							{#if project.liveUrl && !project.liveUrl.startsWith('#')}
-								<div class="mt-5">
+								<div class="mt-4 sm:mt-5">
 									<a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-fg/80 hover:text-fg transition-colors">
 										<span class="gradient-text">View details</span>
-										<ArrowUpRight class="w-4 h-4" />
+										<ArrowUpRight class="w-3 h-3 sm:w-4 sm:h-4" />
 									</a>
 								</div>
 							{/if}
@@ -389,53 +389,53 @@
 </section>
 
 		<!-- Skills Section -->
-<section id="skills" class="py-24 px-6">
-	<div class="max-w-6xl mx-auto">
-		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-			<span class="gradient-text">Skills</span>
-		</h2>
-		
-		{#if true}
-			<!-- Skills would be dynamically loaded here -->
-			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-				<div class="glass-effect p-6 rounded-xl hover-lift">
-					<div class="text-sm text-fg/60 mb-2">Frontend</div>
-					<div class="text-lg font-semibold mb-4">Learning to build clear, responsive interfaces</div>
-					<div class="flex flex-wrap gap-2">
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">SvelteKit</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">React</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">TypeScript</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">TailwindCSS</span>
+<section id="skills" class="py-16 sm:py-24 px-4 sm:px-6">
+		<div class="max-w-6xl mx-auto">
+			<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
+				<span class="gradient-text">Skills</span>
+			</h2>
+			
+			{#if true}
+				<!-- Skills would be dynamically loaded here -->
+				<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+					<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+						<div class="text-sm text-fg/60 mb-2">Frontend</div>
+						<div class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Learning to build clear, responsive interfaces</div>
+						<div class="flex flex-wrap gap-1.5 sm:gap-2">
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">SvelteKit</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">React</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">TypeScript</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">TailwindCSS</span>
+						</div>
+					</div>
+					<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+						<div class="text-sm text-fg/60 mb-2">Backend</div>
+						<div class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Building simple APIs that get the job done</div>
+						<div class="flex flex-wrap gap-1.5 sm:gap-2">
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Node.js</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Supabase</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">SQL</span>
+						</div>
+					</div>
+					<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+						<div class="text-sm text-fg/60 mb-2">Design</div>
+						<div class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Thinking in components and systems</div>
+						<div class="flex flex-wrap gap-1.5 sm:gap-2">
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Figma</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Design Systems</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Accessibility</span>
+						</div>
+					</div>
+					<div class="glass-effect p-4 sm:p-6 rounded-xl hover-lift">
+						<div class="text-sm text-fg/60 mb-2">Workflow</div>
+						<div class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Learning to ship and iterate</div>
+						<div class="flex flex-wrap gap-1.5 sm:gap-2">
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Git</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Code Review</span>
+							<span class="px-2 sm:px-3 py-1 bg-dark-accent rounded-full text-xs">Docker</span>
+						</div>
 					</div>
 				</div>
-				<div class="glass-effect p-6 rounded-xl hover-lift">
-					<div class="text-sm text-fg/60 mb-2">Backend</div>
-					<div class="text-lg font-semibold mb-4">Building simple APIs that get the job done</div>
-					<div class="flex flex-wrap gap-2">
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Node.js</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Supabase</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">SQL</span>
-					</div>
-				</div>
-				<div class="glass-effect p-6 rounded-xl hover-lift">
-					<div class="text-sm text-fg/60 mb-2">Design</div>
-					<div class="text-lg font-semibold mb-4">Thinking in components and systems</div>
-					<div class="flex flex-wrap gap-2">
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Figma</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Design Systems</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Accessibility</span>
-					</div>
-				</div>
-				<div class="glass-effect p-6 rounded-xl hover-lift">
-					<div class="text-sm text-fg/60 mb-2">Workflow</div>
-					<div class="text-lg font-semibold mb-4">Learning to ship and iterate</div>
-					<div class="flex flex-wrap gap-2">
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Git</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Code Review</span>
-						<span class="px-3 py-1 bg-dark-accent rounded-full text-xs">Docker</span>
-					</div>
-				</div>
-			</div>
 		{:else}
 			<!-- <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 				<div class="glass-effect p-6 rounded-xl text-center hover-lift">
@@ -475,18 +475,18 @@
 </section>
 
 		<!-- Blog Section -->
-<section id="blog" class="py-24 px-6">
-	<div class="max-w-6xl mx-auto">
-		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-			<span class="gradient-text">Blog</span>
-		</h2>
-		
-		{#if true}
-			<!-- Blog posts would be dynamically loaded here -->
-			<div class="text-center py-16">
-				<p class="text-xl text-fg/60 mb-4">Blog coming soon</p>
-				<p class="text-fg/40">I'm working on sharing my thoughts and experiences!</p>
-			</div>
+<section id="blog" class="py-16 sm:py-24 px-4 sm:px-6">
+		<div class="max-w-6xl mx-auto">
+			<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
+				<span class="gradient-text">Blog</span>
+			</h2>
+			
+			{#if true}
+				<!-- Blog posts would be dynamically loaded here -->
+				<div class="text-center py-12 sm:py-16">
+					<p class="text-lg sm:text-xl text-fg/60 mb-4">Blog coming soon</p>
+					<p class="text-fg/40">I'm working on sharing my thoughts and experiences!</p>
+				</div>
 		{:else}
 			<!-- <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 				<div class="glass-effect rounded-xl overflow-hidden hover-lift">
@@ -524,24 +524,24 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-24 px-6">
+<section id="contact" class="py-16 sm:py-24 px-4 sm:px-6">
 	<div class="max-w-4xl mx-auto text-center">
-		<h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+		<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
 			<span class="gradient-text">Get In Touch</span>
 		</h2>
 		
-		<p class="text-xl text-fg/80 mb-12">
-			Have an idea, a project, or a role? Send me a message and I’ll get back to you.
+		<p class="text-base sm:text-lg sm:text-xl text-fg/80 mb-8 sm:mb-12 leading-relaxed">
+			Have an idea, a project, or a role? Send me a message and I'll get back to you.
 		</p>
 		
-		<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-			<button onclick={() => (showEmailPopup = true)} class="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift">
+		<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
+			<button onclick={() => (showEmailPopup = true)} class="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift text-base sm:text-lg touch-manipulation">
 				Email Me
 			</button>
-			<a href="https://github.com/sakhawat-hossain24" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
+			<a href="https://github.com/sakhawat-hossain24" target="_blank" rel="noopener noreferrer" class="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block text-base sm:text-lg touch-manipulation">
 				GitHub
 			</a>
-			<a href="https://www.linkedin.com/in/sakhawat-hossain09/" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block">
+			<a href="https://www.linkedin.com/in/sakhawat-hossain09/" target="_blank" rel="noopener noreferrer" class="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block text-base sm:text-lg touch-manipulation">
 				LinkedIn
 			</a>
 		</div>
@@ -558,7 +558,7 @@
 <!-- Email Popup Modal -->
 {#if showEmailPopup}
 	<div 
-		class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6" 
+		class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6" 
 		role="dialog" 
 		aria-modal="true"
 		aria-labelledby="email-modal-title"
@@ -566,50 +566,50 @@
 		onclick={(e) => e.currentTarget === e.target && (showEmailPopup = false)}
 		onkeydown={(e) => e.key === 'Escape' && (showEmailPopup = false)}
 	>
-		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-8 max-w-md w-full relative">
+		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative">
 			<button 
 				onclick={() => (showEmailPopup = false)}
-				class="absolute top-4 right-4 p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg"
+				class="absolute top-3 sm:top-4 right-3 sm:right-4 p-2 sm:p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg touch-manipulation"
 				aria-label="Close email modal"
 			>
-				<X class="w-5 h-5" />
+				<X class="w-4 h-4 sm:w-5 sm:h-5" />
 			</button>
 			
-			<div class="text-center mb-6">
-				<h3 id="email-modal-title" class="text-2xl font-bold mb-2 gradient-text">Get In Touch</h3>
-				<p class="text-fg/70">Feel free to reach out via email</p>
+			<div class="text-center mb-4 sm:mb-6">
+				<h3 id="email-modal-title" class="text-xl sm:text-2xl font-bold mb-2 gradient-text">Get In Touch</h3>
+				<p class="text-sm sm:text-base text-fg/70">Feel free to reach out via email</p>
 			</div>
 			
-			<div class="glass-effect rounded-lg p-4 mb-6">
+			<div class="glass-effect rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
 				<div class="flex items-center justify-between">
-					<span class="text-lg font-mono text-fg">{email}</span>
+					<span class="text-sm sm:text-lg font-mono text-fg break-all">{email}</span>
 					<button
 						onclick={copyEmail}
-						class="p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg transition-colors"
+						class="p-2 sm:p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg transition-colors touch-manipulation flex-shrink-0 ml-2"
 						title="Copy email"
 					>
 						{#if copySuccess}
-							<span class="text-accent-green text-sm">Copied!</span>
+							<span class="text-accent-green text-xs sm:text-sm">Copied!</span>
 						{:else}
-							<Copy class="w-5 h-5" />
+							<Copy class="w-4 h-4 sm:w-5 sm:h-5" />
 						{/if}
 					</button>
 				</div>
 			</div>
 			
-			<div class="flex gap-4">
+			<div class="flex gap-3 sm:gap-4">
 				<button
 					onclick={copyEmail}
-					class="flex-1 px-6 py-3 glass-effect rounded-lg font-semibold hover-lift border border-fg/20 flex items-center justify-center gap-2"
+					class="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 glass-effect rounded-lg font-semibold hover-lift border border-fg/20 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
 				>
-					<Copy class="w-5 h-5" />
+					<Copy class="w-4 h-4 sm:w-5 sm:h-5" />
 					{copySuccess ? 'Copied!' : 'Copy Email'}
 				</button>
 				<button
 					onclick={openEmailClient}
-					class="flex-1 px-6 py-3 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg font-semibold hover-lift text-white flex items-center justify-center gap-2"
+					class="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-accent-green to-accent-blue rounded-lg font-semibold hover-lift text-white flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
 				>
-					<Mail class="w-5 h-5" />
+					<Mail class="w-4 h-4 sm:w-5 sm:h-5" />
 					Send Email
 				</button>
 			</div>
