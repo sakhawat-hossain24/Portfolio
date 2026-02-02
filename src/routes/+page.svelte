@@ -12,7 +12,7 @@
 	// Modal and interaction state
 	let showEmailPopup = $state(false);
 	let copySuccess = $state(false);
-	const email = 'sakhawathossain3141@gmail.com';
+	const email = 'sakhawathossain2409@gmail.com';
 	let modalPanel: HTMLDivElement | null = $state(null);
 	
 	/**
