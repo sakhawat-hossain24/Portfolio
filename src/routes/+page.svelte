@@ -75,7 +75,7 @@
 			description: 'A fast, animated, and responsive portfolio built with SvelteKit + Tailwind.',
 			category: 'web',
 			tech: ['SvelteKit', 'TypeScript', 'TailwindCSS'],
-			image: '/Portfolio/projects/portfolio-screenshot.png',
+			image: '/Portfolio/projects/portfolio_screenshot.png',
 			liveUrl: 'https://sakhawat-hossain24.github.io/Portfolio/',
 			sourceUrl: 'https://github.com/sakhawat-hossain24/Portfolio'
 		},
