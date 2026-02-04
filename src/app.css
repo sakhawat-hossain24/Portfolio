@@ -70,6 +70,24 @@
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent-green) 45%, transparent);
     border-radius: 12px;
   }
+
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-140%);
+    padding: 0.75rem 1rem;
+    background: var(--color-dark-surface);
+    color: var(--color-fg);
+    border: 1px solid color-mix(in oklab, var(--color-fg) 20%, transparent);
+    border-radius: 0 0 12px 0;
+    z-index: 60;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
 }
 
 /* ============================================
@@ -144,5 +162,22 @@
   }
   50% {
     transform: translateY(-20px);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-gradient,
+  .animate-float,
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .hover-lift {
+    transition: none;
   }
 }

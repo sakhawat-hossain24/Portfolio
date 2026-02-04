@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Import dependencies
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github, Copy, Mail, X, ArrowUpRight } from 'lucide-svelte';
 
 	// Component state for typewriter effect
@@ -14,6 +14,8 @@
 	let copySuccess = $state(false);
 	const email = 'sakhawathossain2409@gmail.com';
 	let modalPanel: HTMLDivElement | null = $state(null);
+	let lastActiveElement: HTMLElement | null = null;
+	let prefersReducedMotion = $state(false);
 	
 	/**
 	 * Smooth scroll to a specific element by ID
@@ -47,6 +49,50 @@
 	 */
 	function openEmailClient() {
 		window.location.href = `mailto:${email}`;
+	}
+
+	/**
+	 * Open email modal and manage focus
+	 */
+	async function openEmailPopup() {
+		lastActiveElement = document.activeElement as HTMLElement | null;
+		showEmailPopup = true;
+		await tick();
+		modalPanel?.focus();
+	}
+
+	/**
+	 * Close email modal and restore focus
+	 */
+	function closeEmailPopup() {
+		showEmailPopup = false;
+		lastActiveElement?.focus();
+	}
+
+	/**
+	 * Trap focus inside modal while open
+	 */
+	function handleModalKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			closeEmailPopup();
+			return;
+		}
+		if (event.key !== 'Tab' || !modalPanel) return;
+
+		const focusables = modalPanel.querySelectorAll<HTMLElement>(
+			'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+		);
+		if (focusables.length === 0) return;
+		const first = focusables[0];
+		const last = focusables[focusables.length - 1];
+
+		if (event.shiftKey && document.activeElement === first) {
+			event.preventDefault();
+			last.focus();
+		} else if (!event.shiftKey && document.activeElement === last) {
+			event.preventDefault();
+			first.focus();
+		}
 	}
 	
 	// Projects filtering state and data
@@ -90,6 +136,8 @@
 
 	// Component lifecycle: Initialize typewriter effect and keyboard listeners
 	onMount(() => {
+		prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 		// Typewriter effect state management
 		let timeoutId: ReturnType<typeof setTimeout> | null = null;
 		let cancelled = false;
@@ -140,12 +188,16 @@
 		};
 		
 		// Start the typewriter effect
-		typeWriter();
+		if (prefersReducedMotion) {
+			currentText = fullText;
+		} else {
+			typeWriter();
+		}
 
 		// Keyboard navigation: close modal on Escape key
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key !== 'Escape') return;
-			showEmailPopup = false;
+			closeEmailPopup();
 		};
 		window.addEventListener('keydown', onKeyDown);
 
@@ -174,6 +226,7 @@
 						src="/Portfolio/projects/profile-picture.png" 
 						alt="Sakhawat Hossain" 
 						class="w-full h-full object-cover"
+						fetchpriority="high"
 					/>
 				</div>
 				<h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-2 sm:mb-3">
@@ -195,10 +248,10 @@
 
 		<!-- Call-to-action buttons -->
 		<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16">
-			<button onclick={() => smoothScrollTo('projects')} class="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift text-base sm:text-lg touch-manipulation">
+			<button type="button" onclick={() => smoothScrollTo('projects')} class="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift text-base sm:text-lg touch-manipulation">
 				View Projects
 			</button>
-			<button onclick={() => smoothScrollTo('contact')} class="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 text-base sm:text-lg touch-manipulation">
+			<button type="button" onclick={() => smoothScrollTo('contact')} class="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 text-base sm:text-lg touch-manipulation">
 				Let's Talk
 			</button>
 		</div>
@@ -344,6 +397,8 @@
 									src={project.image} 
 									alt={project.title}
 									class="w-full h-full object-cover"
+									loading="lazy"
+									decoding="async"
 								/>
 							{:else}
 								<div class="absolute inset-0 flex items-center justify-center">
@@ -535,7 +590,7 @@
 		</p>
 		
 		<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
-			<button onclick={() => (showEmailPopup = true)} class="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift text-base sm:text-lg touch-manipulation">
+			<button type="button" onclick={openEmailPopup} class="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover-lift text-base sm:text-lg touch-manipulation">
 				Email Me
 			</button>
 			<a href="https://github.com/sakhawat-hossain24" target="_blank" rel="noopener noreferrer" class="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold hover-lift border border-fg/20 inline-block text-base sm:text-lg touch-manipulation">
@@ -563,12 +618,12 @@
 		aria-modal="true"
 		aria-labelledby="email-modal-title"
 		tabindex="-1"
-		onclick={(e) => e.currentTarget === e.target && (showEmailPopup = false)}
-		onkeydown={(e) => e.key === 'Escape' && (showEmailPopup = false)}
+		onclick={(e) => e.currentTarget === e.target && closeEmailPopup()}
+		onkeydown={handleModalKeydown}
 	>
-		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative">
+		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative" tabindex="0">
 			<button 
-				onclick={() => (showEmailPopup = false)}
+				onclick={closeEmailPopup}
 				class="absolute top-3 sm:top-4 right-3 sm:right-4 p-2 sm:p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg touch-manipulation"
 				aria-label="Close email modal"
 			>

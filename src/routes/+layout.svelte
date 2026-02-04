@@ -102,16 +102,42 @@
 
 <!-- SEO Meta Tags -->
 <svelte:head>
-	<title>Sakhawat Hossain</title>
-	<meta name="description" content="Creative developer portfolio with modern design" />
+	<title>Sakhawat Hossain | Developer Portfolio</title>
+	<meta name="description" content="Developer portfolio of Sakhawat Hossain featuring projects, skills, and contact information." />
+	<link rel="canonical" href="https://sakhawat-hossain24.github.io/Portfolio/" />
+	<meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)" />
+	<meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+	<meta property="og:title" content="Sakhawat Hossain | Developer Portfolio" />
+	<meta property="og:description" content="Projects, skills, and contact information for developer Sakhawat Hossain." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://sakhawat-hossain24.github.io/Portfolio/" />
+	<meta property="og:image" content="https://sakhawat-hossain24.github.io/Portfolio/projects/portfolio-screenshot.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Sakhawat Hossain | Developer Portfolio" />
+	<meta name="twitter:description" content="Projects, skills, and contact information for developer Sakhawat Hossain." />
+	<meta name="twitter:image" content="https://sakhawat-hossain24.github.io/Portfolio/projects/portfolio-screenshot.png" />
 	<!-- Favicon using letter S icon -->
 	<link rel="icon" type="image/png" href="/Portfolio/projects/favicon.png" />
 	<link rel="apple-touch-icon" href="/Portfolio/projects/favicon.png" />
 	<!-- Image attribution: Letter S icon from Flaticon - https://www.flaticon.com/free-icon/letter-s_3665980 -->
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Sakhawat Hossain",
+			"url": "https://sakhawat-hossain24.github.io/Portfolio/",
+			"sameAs": [
+				"https://github.com/sakhawat-hossain24",
+				"https://www.linkedin.com/in/sakhawat-hossain09/"
+			],
+			"jobTitle": "Developer"
+		}
+	</script>
 </svelte:head>
 
 <!-- Main Application Container -->
 <div class="min-h-screen bg-dark-bg text-fg relative">
+	<a href="#main" class="skip-link">Skip to content</a>
 	<!-- Scroll Progress Indicator -->
 	<div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent-green to-accent-blue z-50 transition-all duration-300" style="width: 0%"></div>
 	
@@ -156,6 +182,8 @@
 					<button
 						class="md:hidden p-3 rounded-xl glass-effect hover:bg-fg/5 transition-colors touch-manipulation"
 						aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+						aria-expanded={mobileNavOpen}
+						aria-controls="mobile-nav"
 						onclick={() => (mobileNavOpen = !mobileNavOpen)}
 					>
 						{#if mobileNavOpen}
@@ -170,7 +198,7 @@
 
 		<!-- Mobile Navigation Menu -->
 		{#if mobileNavOpen}
-			<div class="md:hidden fixed inset-0 top-16 z-30 px-4 sm:px-6 pt-4">
+			<div id="mobile-nav" class="md:hidden fixed inset-0 top-16 z-30 px-4 sm:px-6 pt-4">
 				<div class="max-w-7xl mx-auto glass-effect rounded-2xl px-4 py-6 max-h-[calc(100vh-6rem)] overflow-y-auto">
 					<div class="grid gap-1">
 						<a href="#about" class="px-4 py-4 rounded-xl hover:bg-fg/5 transition-colors text-lg font-medium" onclick={(e) => (e.preventDefault(), navigateToSection('about'))}>About</a>
@@ -202,7 +230,7 @@
 	</nav>
 
 	<!-- Main Content Area -->
-	<main class="relative z-10 pt-24">
+	<main id="main" class="relative z-10 pt-24">
 		{@render children()}
 	</main>
 
