@@ -214,6 +214,7 @@
 <section id="hero" class="min-h-screen flex items-start justify-center relative overflow-hidden pt-12 sm:pt-8">
 	<!-- Animated gradient background -->
 	<div class="absolute inset-0 gradient-bg animate-gradient opacity-30"></div>
+	<div class="absolute bottom-0 left-0 right-0 section-fade"></div>
 	
 	<!-- Hero content container -->
 	<div class="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto mt-6 sm:mt-8">
@@ -288,7 +289,8 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="py-16 sm:py-24 px-4 sm:px-6">
+<section id="about" class="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
+	<div class="absolute inset-x-0 top-0 h-32 section-glow"></div>
 	<div class="max-w-6xl mx-auto">
 		<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
 			<span class="gradient-text">About Me</span>
@@ -585,7 +587,7 @@
 			<span class="gradient-text">Get In Touch</span>
 		</h2>
 		
-		<p class="text-base sm:text-lg sm:text-xl text-fg/80 mb-8 sm:mb-12 leading-relaxed">
+		<p class="text-base sm:text-lg md:text-xl text-fg/80 mb-8 sm:mb-12 leading-relaxed">
 			Have an idea, a project, or a role? Send me a message and I'll get back to you.
 		</p>
 		

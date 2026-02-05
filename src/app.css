@@ -59,6 +59,10 @@
     @apply bg-dark-bg text-fg overflow-x-hidden antialiased;
   }
 
+  section {
+    scroll-margin-top: 6rem;
+  }
+
   /* Text selection styling */
   ::selection {
     background: color-mix(in oklab, var(--color-accent-blue) 25%, transparent);
@@ -107,6 +111,9 @@
   /* Glass morphism effect for cards and navigation */
   .glass-effect {
     @apply bg-dark-surface/75 backdrop-blur-md border border-fg/10;
+    background-image: linear-gradient(135deg, color-mix(in oklab, var(--color-fg) 6%, transparent), transparent);
+    box-shadow: 0 10px 28px color-mix(in oklab, var(--color-fg) 12%, transparent),
+      inset 0 1px 0 color-mix(in oklab, var(--color-fg) 8%, transparent);
   }
   
   /* Hover lift animation for interactive elements */
@@ -138,6 +145,20 @@
   /* Floating animation for background elements */
   .animate-float {
     animation: float 6s ease-in-out infinite;
+  }
+
+  /* Hero to section fade for smoother transitions */
+  .section-fade {
+    pointer-events: none;
+    height: clamp(56px, 12vw, 120px);
+    background: linear-gradient(180deg, transparent 0%, var(--color-dark-bg) 100%);
+  }
+
+  /* Soft glow at the start of key sections */
+  .section-glow {
+    pointer-events: none;
+    background: radial-gradient(55% 55% at 50% 0%, color-mix(in oklab, var(--color-accent-blue) 18%, transparent), transparent 72%);
+    opacity: 0.22;
   }
 }
 
