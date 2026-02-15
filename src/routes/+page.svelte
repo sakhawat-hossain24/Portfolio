@@ -1,6 +1,7 @@
 <script lang="ts">
 	// Import dependencies
 	import { onMount, tick } from 'svelte';
+	import { base } from '$app/paths';
 	import { ChevronDown, Code, Palette, Zap, ExternalLink, Github, Copy, Mail, X, ArrowUpRight } from 'lucide-svelte';
 
 	// Component state for typewriter effect
@@ -121,7 +122,7 @@
 			description: 'A fast, animated, and responsive portfolio built with SvelteKit + Tailwind.',
 			category: 'web',
 			tech: ['SvelteKit', 'TypeScript', 'TailwindCSS'],
-			image: '/Portfolio/projects/portfolio-screenshot.png',
+			image: `${base}/projects/portfolio-screenshot.png`,
 			liveUrl: 'https://sakhawat-hossain24.github.io/Portfolio/',
 			sourceUrl: 'https://github.com/sakhawat-hossain24/Portfolio'
 		},
@@ -224,7 +225,7 @@
 			<div class="flex flex-col items-center">
 				<div class="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 sm:mb-6 ring-4 ring-fg/10 glass-effect">
 					<img 
-						src="/Portfolio/projects/profile-picture.png" 
+						src="{base}/projects/profile-picture.png" 
 						alt="Sakhawat Hossain" 
 						class="w-full h-full object-cover"
 						fetchpriority="high"
@@ -623,7 +624,7 @@
 		onclick={(e) => e.currentTarget === e.target && closeEmailPopup()}
 		onkeydown={handleModalKeydown}
 	>
-		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative" role="document" tabindex="0">
+		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative" role="document" tabindex="-1">
 			<button 
 				onclick={closeEmailPopup}
 				class="absolute top-3 sm:top-4 right-3 sm:right-4 p-2 sm:p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg touch-manipulation"

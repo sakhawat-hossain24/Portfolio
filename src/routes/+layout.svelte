@@ -2,6 +2,7 @@
 	// Import dependencies
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import { Menu, X, Sun, Moon } from 'lucide-svelte';
 
 	// Component props
@@ -111,14 +112,14 @@
 	<meta property="og:description" content="Projects, skills, and contact information for developer Sakhawat Hossain." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://sakhawat-hossain24.github.io/Portfolio/" />
-	<meta property="og:image" content="https://sakhawat-hossain24.github.io/Portfolio/projects/portfolio-screenshot.png" />
+	<meta property="og:image" content={`https://sakhawat-hossain24.github.io${base}/projects/portfolio-screenshot.png`} />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Sakhawat Hossain | Developer Portfolio" />
 	<meta name="twitter:description" content="Projects, skills, and contact information for developer Sakhawat Hossain." />
-	<meta name="twitter:image" content="https://sakhawat-hossain24.github.io/Portfolio/projects/portfolio-screenshot.png" />
+	<meta name="twitter:image" content={`https://sakhawat-hossain24.github.io${base}/projects/portfolio-screenshot.png`} />
 	<!-- Favicon using letter S icon -->
-	<link rel="icon" type="image/png" href="/Portfolio/projects/favicon.png" />
-	<link rel="apple-touch-icon" href="/Portfolio/projects/favicon.png" />
+	<link rel="icon" type="image/png" href="{base}/projects/favicon.png" />
+	<link rel="apple-touch-icon" href="{base}/projects/favicon.png" />
 	<!-- Image attribution: Letter S icon from Flaticon - https://www.flaticon.com/free-icon/letter-s_3665980 -->
 	<script type="application/ld+json">
 		{
