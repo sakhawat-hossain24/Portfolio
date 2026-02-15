@@ -11,7 +11,8 @@ const config = {
 			strict: false
 		}),
 		paths: {
-			base: '/Portfolio'
+			// Empty base on Vercel so assets at /_app/... match build output; /Portfolio for GitHub Pages
+			base: process.env.VERCEL ? '' : '/Portfolio'
 		},
 		prerender: {
 			handleMissingId: 'ignore'
