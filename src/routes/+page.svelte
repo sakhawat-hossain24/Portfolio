@@ -623,7 +623,7 @@
 		onclick={(e) => e.currentTarget === e.target && closeEmailPopup()}
 		onkeydown={handleModalKeydown}
 	>
-		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative" tabindex="0">
+		<div bind:this={modalPanel} class="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full relative" role="document" tabindex="0">
 			<button 
 				onclick={closeEmailPopup}
 				class="absolute top-3 sm:top-4 right-3 sm:right-4 p-2 sm:p-2 rounded-lg glass-effect hover-lift text-fg/70 hover:text-fg touch-manipulation"
