@@ -291,7 +291,6 @@
 
 <!-- About Section -->
 <section id="about" class="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
-	<div class="absolute inset-x-0 top-0 h-32 section-glow"></div>
 	<div class="max-w-6xl mx-auto">
 		<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">
 			<span class="gradient-text">About Me</span>
